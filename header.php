@@ -72,7 +72,7 @@
 			
 				<ul class="social-menu desktop">
 
-					<li><a href="<?php echo home_url( '?s=' ); ?>"></a></li>
+					<li><a href="<?php echo esc_url( home_url( '?s=' ) ); ?>"></a></li>
 							
 					<?php 
 
