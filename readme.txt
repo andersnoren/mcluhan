@@ -69,6 +69,11 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 1.07 (2017-12-23)
+-------------------------
+- Escaped output home_url() in the header
+- Replaced include( locate_template() ) with locate_template() with the include argument set to true, to comply with WordPress.org theme requirements
+
 Version 1.06 (2017-12-12)
 -------------------------
 - Fixed output of dates on the archive pages
