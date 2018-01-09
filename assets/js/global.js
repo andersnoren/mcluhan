@@ -23,7 +23,7 @@ WP.mobileMenu = {
 		$( '.nav-toggle' ).on( 'click', function(){	
 			$( this ).toggleClass( 'active' );
 			$( '.mobile-menu-wrapper' ).slideToggle().toggleClass( 'visible' );
-			$( 'body' ).toggleClass( 'lock-scroll' );
+			$( 'body' ).toggleClass( 'mobile-menu-visible lock-scroll' );
 			$( '.mobile-search, .toggle-mobile-search' ).removeClass( 'active' );
 		} );
 
@@ -31,7 +31,7 @@ WP.mobileMenu = {
 		$( window ).on( 'resize', function(){
 			var winWidth = $( window ).width();
 			if ( winWidth > 1000 ) {
-				$( 'body' ).removeClass( 'lock-scroll' );
+				$( 'body' ).removeClass( 'mobile-menu-visible lock-scroll' );
 				$( '.mobile-menu-wrapper' ).hide().removeClass( 'visible' );
 				$( '.nav-toggle' ).removeClass( 'active' );
 				$( '.mobile-search' ).removeClass( 'active hide' );

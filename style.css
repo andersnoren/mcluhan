@@ -1758,6 +1758,12 @@ input.search-field::-moz-placeholder { color: #121212; }
 	.white-bg .site-header {
 		border: none;
 		border-bottom: 1px solid rgba( 0, 0, 4, 0.075 );
+		transition: border-color .3s linear;
+	}
+
+	body.mobile-menu-visible .same-custom-bgs .site-header,
+	body.mobile-menu-visible.white-bg .site-header {
+		border-color: transparent;
 	}
 
 	.menu-wrapper,
