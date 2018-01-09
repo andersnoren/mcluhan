@@ -197,7 +197,7 @@ function mcluhan_load_scripts(){
         wp_enqueue_script( 'comment-reply' );
     }
 }
-add_action( 'wp_print_scripts', 'mcluhan_load_scripts' );
+add_action( 'wp_enqueue_scripts', 'mcluhan_load_scripts' );
 
 
 
