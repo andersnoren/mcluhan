@@ -7,6 +7,9 @@ Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
+McLuhan WordPress Theme, Copyright 2018 Anders Norén
+McLuhan is distributed under the terms of the GNU GPL
+
 
 == Installation ==
 
