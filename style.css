@@ -1989,13 +1989,13 @@ input.search-field::-moz-placeholder { color: #121212; }
 	}
 
 	.untoggle-mobile-search:before {
-		left: calc( 50% - 1px );
+		left: calc( 50% - 1.5px );
 		transform-origin: top right;
 		transform: rotate(30deg);
 	}
 
 	.untoggle-mobile-search:after {
-		right: calc( 50% - 1px );
+		right: calc( 50% - 1.5px );
 		transform-origin: top left;
 		transform: rotate(-30deg);
 	}
