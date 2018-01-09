@@ -287,7 +287,7 @@ function mcluhan_ajax_results() {
 
 			<?php if ( $ajax_query->max_num_pages > 1 ) : ?>
 
-				<a class="show-all" href="<?php echo home_url( '?s=' . $string ); ?>"><?php _e( 'Show all', 'mcluhan' ); ?></a>
+				<a class="show-all" href="<?php echo esc_url( home_url( '?s=' . $string ) ); ?>"><?php _e( 'Show all', 'mcluhan' ); ?></a>
 
 			<?php endif; ?>
 
