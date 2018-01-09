@@ -107,7 +107,7 @@ function mcluhan_enqueue_scripts() {
 	global $wp_query;
 
 	// AJAX PAGINATION
-    wp_localize_script( 'mcluhan_global', 'ajaxpagination', array(
+    wp_localize_script( 'mcluhan_global', 'mcluhan_ajaxpagination', array(
         'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
         'query_vars'	=> json_encode( $wp_query->query )
     ) );

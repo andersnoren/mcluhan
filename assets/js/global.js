@@ -218,7 +218,7 @@ WP.ajaxSearch = {
 		search_string = JSON.stringify( data );
 
 		$.ajax({
-			url: ajaxpagination.ajaxurl,
+			url: mcluhan_ajaxpagination.ajaxurl,
 			type: 'post',
 			data: {
 				action: 'ajax_pagination',
