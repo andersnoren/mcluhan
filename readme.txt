@@ -72,6 +72,24 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 1.08 (2018-01-09)
+-------------------------
+- Removed override of $GLOBALS[’comment’]
+- Replaced minified FontAwesome with non-minified version
+- Escaped image url in related-posts.php
+- Added copyright to readme
+- Added escaping of $mod variable
+- Escaped get_year_link()
+- Added missing escape of home_url()
+- Replaced wp_print_scripts with wp_enqueue scripts
+- Tweaked untoggle-mobile-search position
+- Hide site header bottom border on mobile when the mobile menu is visible
+- Prefixed ajaxpagination with theme name
+- Removed require of locale_file since it’s not needed
+- Replaced locate_template() include with get_template_part()
+- Changed date() to date_i18n() in footer
+- Removed setlocale()
+
 Version 1.07 (2017-12-23)
 -------------------------
 - Escaped output home_url() in the header
