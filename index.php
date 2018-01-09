@@ -76,7 +76,7 @@
 						?>
 
 						<li>
-							<h3 class="list-title"><a href="<?php echo get_year_link( $current_year ); ?>"><?php echo $current_year; ?></a></h3>
+							<h3 class="list-title"><a href="<?php echo esc_url( get_year_link( $current_year ) ); ?>"><?php echo $current_year; ?></a></h3>
 						</li>
 
 						<?php 
