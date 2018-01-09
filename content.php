@@ -17,9 +17,6 @@ if ( ! get_the_title() ) {
 		$sticky = is_sticky() ? '<div class="sticky-arrow"></div>'  : '';
 		the_title( '<h2 class="title">' . $sticky . '<span>', '</span></h2>' ); 
 
-		// Set locale
-		setlocale( LC_TIME, get_locale() );
-
 		// Check setting for the order of month and day
 		$format_setting = get_theme_mod( 'mcluhan_preview_date_format' );
 		$date_format = ( $format_setting && $format_setting == 'month-day' ) ? '%b %-d' : '%-d %b';
