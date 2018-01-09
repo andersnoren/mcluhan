@@ -362,7 +362,6 @@ add_filter( 'get_the_archive_title', 'mcluhan_remove_archive_title_prefix' );
 if ( ! function_exists( 'mcluhan_comment' ) ) {
 
 	function mcluhan_comment( $comment, $args, $depth ) {
-		$GLOBALS['comment'] = $comment;
 		switch ( $comment->comment_type ) :
 			case 'pingback' :
 			case 'trackback' :
