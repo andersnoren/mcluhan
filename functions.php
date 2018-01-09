@@ -69,7 +69,7 @@ add_action( 'pre_get_posts', 'mcluhan_always_list_all_posts' );
 function mcluhan_load_style() {
 	if ( ! is_admin() ) {
 		wp_register_style( 'mcluhan-fonts', 'https://fonts.googleapis.com/css?family=Archivo:400,400i,600,600i,700,700i&amp;subset=latin-ext', array(), null );
-		wp_register_style( 'fontawesome', get_template_directory_uri() . '/assets/css/fa.min.css', null );
+		wp_register_style( 'fontawesome', get_template_directory_uri() . '/assets/css/font-awesome.css', null );
 
 		wp_enqueue_style( 'mcluhan-style', get_template_directory_uri() . '/style.css', array( 'fontawesome', 'mcluhan-fonts' ) );
     } 
