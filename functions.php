@@ -47,19 +47,15 @@ add_action( 'after_setup_theme', 'mcluhan_setup' );
 
 
 
-/* ALWAYS LIST ALL POSTS IN THE MAIN QUERIES
+/* IN SEARCH, LIST RESULTS BY DATE
 ------------------------------------------------ */
 
-function mcluhan_always_list_all_posts( $query ) {
-	if ( ! is_admin() && $query->is_main_query() ) {
-		$query->set( 'posts_per_page', -1 );
-
-		if ( $query->is_search() ) {
-			$query->set( 'orderby', 'date' );
-		}
+function mcluhan_sort_search_posts_by_date( $query ) {
+	if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
+		$query->set( 'orderby', 'date' );
 	}
 }
-add_action( 'pre_get_posts', 'mcluhan_always_list_all_posts' );
+add_action( 'pre_get_posts', 'mcluhan_sort_search_posts_by_date' );
 
 
 
