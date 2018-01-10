@@ -1526,7 +1526,6 @@ tbody > tr:nth-child(odd) {
 
 .archive-pagination {
 	margin-top: 100px;
-	width: 100%;
 }
 
 .archive-pagination .previous-posts-link { float: left; }
@@ -2544,8 +2543,14 @@ input.search-field::-moz-placeholder { color: #121212; }
 		margin-left: 30px;
 	}
 
+	/* Archive Pagination ----------------------------- */
 
-	/* Archive ----------------------------- */
+	.archive-pagination {
+		margin-top: 50px;
+	}
+
+
+	/* Error 404 ----------------------------- */
 
 	.error404 .search-form {
 		margin-top: 22px;
