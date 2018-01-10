@@ -72,6 +72,12 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 1.09 (2018-01-10)
+-------------------------
+- Style tweaks for the archive pagination
+- Added an admin notice displayed on theme activation, letting users how to update the posts_per_page setting
+- Removed $query->set() overriding the default posts_per_page option
+
 Version 1.08 (2018-01-09)
 -------------------------
 - Removed override of $GLOBALS[’comment’]
