@@ -431,6 +431,26 @@ if ( ! function_exists( 'mcluhan_comment' ) ) {
 
 
 
+/* ADMIN NOTICES
+------------------------------------------------ */
+
+function mcluhan_admin_notices() {
+
+	// Show notice about posts per page on theme activation, if the setting isn't set already
+	if ( isset( $_GET['activated'] ) && $_GET['activated'] == true && get_option( 'template' ) == 'mcluhan' && get_option( 'posts_per_page' ) < 999 ) : ?>
+
+		<div class="notice notice-info is-dismissible">
+			<p><?php printf( __( 'To make McLuhan display like the %sdemo site%s, with all posts listed on archive pages, you need to change the "Blog pages show at most" setting in %sSettings > Reading%s to a value exceeding the number of posts on your site.', 'mcluhan' ), '<a href="http://www.andersnoren.se/themes/mcluhan/">', '</a>', '<a href="' . admin_url( 'options-reading.php' ) . '">', '</a>' ); ?></p>
+		</div>
+
+		<?php 
+	endif;
+
+}
+add_action( 'mcluhan_admin_notices', 'showAdminMessages' );
+
+
+
 /* CUSTOMIZER SETTINGS
 ------------------------------------------------ */
 
