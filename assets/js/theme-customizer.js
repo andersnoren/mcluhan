@@ -1,12 +1,11 @@
 /**
  * This file adds some LIVE to the Theme Customizer live preview. To leverage
  * this, set your custom settings to 'postMessage' and then add your handling
- * here. Your javascript should grab settings from customizer controls, and 
+ * here. Your javascript should grab settings from customizer controls, and
  * then make any necessary changes to the page using jQuery.
  */
- 
-( function( $ ) {
 
+( function( $ ) {
 
 	// Site Name
 	wp.customize( 'blogname', function( value ) {
@@ -14,7 +13,6 @@
 			$( '.site-name' ).text( newval );
 		} );
 	} );
-
 
 	// Header background color
 	wp.customize( 'mcluhan_accent_color', function( value ) {
@@ -36,7 +34,6 @@
 		} );
 	} );
 
-
 	// Dark sidebar text
 	wp.customize( 'mcluhan_dark_sidebar_text', function( value ) {
 		value.bind( function( newval ) {
@@ -47,7 +44,6 @@
 			}
 		} );
 	} );
-
 
 	// Hide social
 	wp.customize( 'mcluhan_hide_social', function( value ) {
@@ -60,7 +56,6 @@
 		} );
 	} );
 
-
 	// Capitalized post preview dates
 	wp.customize( 'mcluhan_preview_date_lowercase', function( value ) {
 		value.bind( function( newval ) {
@@ -71,6 +66,5 @@
 			}
 		} );
 	} );
-	
-	
+
 } )( jQuery );

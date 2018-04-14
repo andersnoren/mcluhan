@@ -11,7 +11,8 @@
 
 	<div class="section-inner">
 
-		<p class="excerpt"><?php printf( __( "It might have been renamed, deleted, or didn't exist in the first place. You can return to the %s or search for the content through the form below.", "mcluhan" ), '<a href="' . esc_url( home_url() ) . '">' . __( 'start page', 'mcluhan' ) . '</a>' ); ?></p>
+		<?php /* Translators: %s = link to the start page */ ?>
+		<p class="excerpt"><?php printf( _x( "It might have been renamed, deleted, or didn't exist in the first place. You can return to the %s or search for the content through the form below.", 'Translators: %s = link to the start page', 'mcluhan' ), '<a href="' . esc_url( home_url() ) . '">' . __( 'start page', 'mcluhan' ) . '</a>' ); ?></p>
 
 		<?php get_search_form(); ?>
 

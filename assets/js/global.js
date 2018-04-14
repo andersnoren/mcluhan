@@ -16,11 +16,11 @@ var doc = $( document ),
 
 // =======================================================================  Mobile Menu
 WP.mobileMenu = {
-	
+
 	init: function(){
 
 		// Toggle navigation
-		$( '.nav-toggle' ).on( 'click', function(){	
+		$( '.nav-toggle' ).on( 'click', function(){
 			$( this ).toggleClass( 'active' );
 			$( '.mobile-menu-wrapper' ).slideToggle().toggleClass( 'visible' );
 			$( 'body' ).toggleClass( 'mobile-menu-visible lock-scroll' );
@@ -49,11 +49,11 @@ WP.mobileMenu = {
 
 // =======================================================================  Search Toggle
 WP.searchToggle = {
-	
+
 	init: function(){
 
 		// Toggle desktop search
-		$( 'a[href$="?s="]' ).on( 'click', function(){	
+		$( 'a[href$="?s="]' ).on( 'click', function(){
 			$( this ).toggleClass( 'active' );
 			$( '.search-overlay' ).toggleClass( 'active' );
 			if ( $( this ).hasClass( 'active' ) ) {
@@ -73,9 +73,8 @@ WP.searchToggle = {
 			$( '.social-menu.desktop a[href$="?s="]' ).removeClass( 'active' );
 		} );
 
-
 		// Toggle mobile search
-		$( '.toggle-mobile-search' ).on( 'click', function(){	
+		$( '.toggle-mobile-search' ).on( 'click', function(){
 			$( '.mobile-search' ).removeClass( 'hide' );
 			$( '.toggle-mobile-search, .mobile-search' ).toggleClass( 'active' );
 			$( '.mobile-search .search-field' ).focus();
@@ -83,7 +82,7 @@ WP.searchToggle = {
 		} );
 
 		// Untoggle mobile search
-		$( '.untoggle-mobile-search' ).on( 'click', function(){	
+		$( '.untoggle-mobile-search' ).on( 'click', function(){
 			$( '.mobile-search' ).addClass( 'hide' );
 			$( '.mobile-search, .toggle-mobile-search' ).removeClass( 'active' )
 			$( '.mobile-search .search-field' ).blur();
@@ -101,28 +100,28 @@ WP.searchToggle = {
 
 // =======================================================================  Resize videos
 WP.intrinsicRatioEmbeds = {
-	
+
 	init: function(){
 
 		// Resize videos after their container
-		var vidSelector = ".post iframe, .post object, .post video, .widget-content iframe, .widget-content object, .widget-content iframe";	
-		var resizeVideo = function(sSel) {
-			$( sSel ).each(function() {
-				var $video = $(this),
+		var vidSelector = ".post iframe, .post object, .post video, .widget-content iframe, .widget-content object, .widget-content iframe";
+		var resizeVideo = function( sSel ) {
+			$( sSel ).each( function() {
+				var $video = $( this ),
 					$container = $video.parent(),
 					iTargetWidth = $container.width();
 
-				if ( !$video.attr("data-origwidth") ) {
-					$video.attr("data-origwidth", $video.attr("width"));
-					$video.attr("data-origheight", $video.attr("height"));
+				if ( ! $video.attr( "data-origwidth" ) ) {
+					$video.attr( "data-origwidth", $video.attr( "width" ) );
+					$video.attr( "data-origheight", $video.attr( "height" ) );
 				}
 
-				var ratio = iTargetWidth / $video.attr("data-origwidth");
+				var ratio = iTargetWidth / $video.attr( "data-origwidth" );
 
-				$video.css("width", iTargetWidth + "px");
-				$video.css("height", ( $video.attr("data-origheight") * ratio ) + "px");
-			});
-		};
+				$video.css( "width", iTargetWidth + "px" );
+				$video.css( "height", ( $video.attr( "data-origheight" ) * ratio ) + "px" );
+			} );
+		}
 
 		resizeVideo( vidSelector );
 
@@ -139,30 +138,30 @@ WP.intrinsicRatioEmbeds = {
 
 // =======================================================================  Smooth Scroll
 WP.smoothScroll = {
-	
+
 	init: function(){
 
 		// Smooth scroll to anchor links
-		$('a[href*="#"]')
+		$( 'a[href*="#"]' )
 		// Remove links that don't actually link to anything
-		.not('[href="#"]')
-		.not('[href="#0"]')
-		.click(function(event) {
+		.not( '[href="#"]' )
+		.not( '[href="#0"]' )
+		.click( function( event ) {
 			// On-page links
-			if ( location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname ) {
+			if ( location.pathname.replace( /^\//, '' ) == this.pathname.replace( /^\//, '' ) && location.hostname == this.hostname ) {
 				// Figure out element to scroll to
-				var target = $(this.hash);
-				target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+				var target = $( this.hash );
+				target = target.length ? target : $( '[name=' + this.hash.slice( 1 ) + ']' );
 				// Does a scroll target exist?
-				if (target.length) {
+				if ( target.length ) {
 					// Only prevent default if animation is actually gonna happen
 					event.preventDefault();
-						$('html, body').animate({
+					$( 'html, body' ).animate({
 						scrollTop: target.offset().top
 					}, 1000 );
 				}
 			}
-		})
+		} );
 
 	},
 
@@ -172,17 +171,17 @@ WP.smoothScroll = {
 
 // ======================================================================= AJAX Search
 WP.ajaxSearch = {
-	
+
 	init: function(){
 
 		// Delay function
 		var delay = ( function(){
 			var timer = 0;
 			return function( callback, ms ) {
-				clearTimeout (timer);
-				timer = setTimeout(callback, ms);
+				clearTimeout( timer );
+				timer = setTimeout( callback, ms );
 			}
-		})();
+		} )();
 
 		// Update results on keyup, after delay
 		$( '.mobile-search .search-field' ).keyup( function() {
@@ -250,7 +249,7 @@ WP.ajaxSearch = {
 				// We're no longer loading
 			},
 
-			error: function(jqXHR, textStatus, errorThrown) {
+			error: function( jqXHR, textStatus, errorThrown ) {
 				console.log( 'AJAX error: ' + errorThrown );
 			}
 		});
@@ -268,7 +267,7 @@ WP.ajaxSearch = {
 
 
 // ======================================================================= Function calls
-$( document ).ready( function( ) {
+$( document ).ready( function() {
 
 	WP.mobileMenu.init();							// Mobile Menu
 

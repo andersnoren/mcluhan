@@ -1,8 +1,8 @@
-<?php 
+<?php
 
 get_header();
 
-if ( have_posts() )  : 
+if ( have_posts() ) :
 
 	while ( have_posts() ) : the_post(); ?>
 
@@ -15,10 +15,10 @@ if ( have_posts() )  :
 				</div>
 
 			<?php endif; ?>
-		
+
 			<header class="entry-header section-inner">
-			
-				<?php 
+
+				<?php
 				the_title( '<h1 class="entry-title">', '</h2>' );
 
 				// Make sure we have a custom excerpt
@@ -35,14 +35,19 @@ if ( have_posts() )  :
 
 						<?php if ( ! is_attachment() ) : ?>
 
-							<span><?php echo __( 'In', 'mcluhan' ) . ' '; the_category( ', ' ); ?></span>
+							<span>
+								<?php
+								echo __( 'In', 'mcluhan' ) . ' ';
+								the_category( ', ' );
+								?>
+							</span>
 
 						<?php endif; ?>
 
 					</div>
 
 				<?php endif; ?>
-			
+
 			</header><!-- .entry-header -->
 
 			<div class="entry-content section-inner">
@@ -51,61 +56,62 @@ if ( have_posts() )  :
 
 			</div> <!-- .content -->
 
-			<?php 
-			
+			<?php
+
 			wp_link_pages( array(
 				'before' => '<p class="section-inner linked-pages">' . __( 'Pages', 'mcluhan' ) . ':',
-			) ); 
-			
+			) );
+
 			if ( get_post_type() == 'post' && get_the_tags() ) : ?>
 
 				<div class="meta bottom section-inner">
-				
+
 					<p class="tags"><?php the_tags( ' #', ' #', ' ' ); ?></p>
 
 				</div> <!-- .meta -->
 
-				<?php 
+				<?php
 			endif;
 
 			// Check for single post pagination
 			if ( is_single() && ! is_attachment() && ( get_previous_post_link() || get_next_post_link() ) ) : ?>
-			
+
 				<div class="post-pagination section-inner">
-			
+
 					<div class="previous-post">
 						<?php if ( get_previous_post_link() ) : ?>
 							<?php echo get_previous_post_link( '%link', '<span>%title</span>' ); ?>
 						<?php endif; ?>
 					</div>
-			
+
 					<div class="next-post">
 						<?php if ( get_next_post_link() ) : ?>
 							<?php echo get_next_post_link( '%link', '<span>%title</span>' ); ?>
 						<?php endif; ?>
 					</div>
-			
+
 				</div><!-- .post-pagination -->
-			
+
 			<?php endif;
-			
+
 			// If comments are open, or there are at least one comment
 			if ( get_comments_number() || comments_open() ) : ?>
-			
+
 				<div class="section-inner wide">
 					<?php comments_template(); ?>
 				</div>
-			
+
 			<?php endif; ?>
 
 		</div> <!-- .post -->
 
-		<?php 
-		
-		if ( get_post_type() == 'post' ) get_template_part( 'related-posts' );
+		<?php
 
+		if ( get_post_type() == 'post' ) {
+			get_template_part( 'related-posts' );
+		}
 	endwhile;
 
-endif; 
+endif;
 
 get_footer(); ?>

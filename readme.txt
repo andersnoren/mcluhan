@@ -72,6 +72,12 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 1.10 (2018-04-14)
+-------------------------
+- Fixed z-index issue with the header overlapping the WordPress admin bar dropdowns
+- Made a couple of tweaks based on the Theme Sniffer results
+- Made functions pluggable
+
 Version 1.09 (2018-01-10)
 -------------------------
 - Style tweaks for the archive pagination
