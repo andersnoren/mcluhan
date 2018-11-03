@@ -2,8 +2,8 @@
 
 	Theme Name: McLuhan
     Text Domain: mcluhan
-	Version: 1.10
-	Description: McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template. Demo: http://www.andersnoren.se/themes/mcluhan/
+	Version: 1.13
+	Description: McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, Gutenberg support, a responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template. Demo: http://www.andersnoren.se/themes/mcluhan/
 	Tags: two-columns, left-sidebar, custom-menu, custom-colors, editor-style, featured-images, full-width-template, sticky-post, threaded-comments, theme-options, blog, translation-ready
 	Author: Anders Norén
 	Author URI: http://www.andersnoren.se
@@ -963,6 +963,12 @@ body.hide-social .social-menu {
 	display: block; 
 }
 
+.comment-respond input[type="checkbox"] + label {
+	display: inline;
+	font-size: 14px;
+	margin: 0 0 0 5px;
+}
+
 .comment-respond .form-submit {
 	text-align: right;
 }
@@ -1041,7 +1047,13 @@ em {
 hr {
 	border: none;
 	border-top: 1px solid rgba( 0, 0, 0, 0.13 );
-	margin: 50px 0;
+	margin: 50px auto;
+	width: 50%;
+}
+
+hr.is-style-wide,
+hr.is-style-dots {
+	width: 100%;
 }
 
 address {
@@ -1062,6 +1074,10 @@ address {
 .entry-content p {
 	line-height: 1.6;
 	margin-bottom: 25px;
+}
+
+.entry-content p.has-background {
+	padding: 20px;
 }
 
 .entry-content h1,
@@ -1137,6 +1153,16 @@ pre {
 	font-size: 14px;
 	line-height: 1.5;
 	padding: 20px;
+	white-space: pre-wrap;       /* css-3 */
+	white-space: -moz-pre-wrap;  /* Mozilla, since 1999 */
+	white-space: -pre-wrap;      /* Opera 4-6 */
+	white-space: -o-pre-wrap;    /* Opera 7 */
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+}
+
+p.has-drop-cap:not(:focus):first-letter {
+    font-size: 7.5em;
+    margin: .1em .05em 0 -.075em;
 }
 
 
@@ -1183,15 +1209,20 @@ blockquote cite:before {
 
 /* Page Media ------------------------------ */
 
+figure {
+	margin: 0;
+}
+
 .wp-caption { 
 	display: block;
 	max-width: 100%;
 }
 
 .gallery-caption,
-.wp-caption-text {
-    font-size: 0.8em;
-	margin: 10px 0 0;
+.wp-caption-text,
+.entry-content figcaption {
+    font-size: 0.9em;
+	margin: 15px 0 0;
 }
 
 .entry-content .gallery-caption,
@@ -1207,11 +1238,33 @@ blockquote cite:before {
 	color: inherit;
 }
 
+.entry-content .alignnone,
+.entry-content .aligncenter,
+.entry-content .alignwide,
+.entry-content .alignfull {
+	margin: 2.5em auto;
+}
+
+.entry-content .alignfull {
+	margin-left: calc( 50% - 50vw + 190px );
+	max-width: calc( 100vw - 380px );
+	width: calc( 100vw - 380px );
+}
+
+.entry-content .wp-block-image.alignfull figcaption {
+	padding: 0 5%;
+}
+
+.entry-content .alignwide {
+	margin-left: calc( 50% - 430px );
+	max-width: 860px;
+	width: 860px;
+}
+
 .alignleft,
 .alignright {
 	margin-bottom: 20px;
 	max-width: 40%;
-	width: 40%;
 }
 
 .alignleft {
@@ -1222,16 +1275,6 @@ blockquote cite:before {
 .alignright {
 	float: right;
 	margin: 5px -80px 30px 40px;
-}
-
-.aligncenter,
-.alignnone { 
-	margin: 40px auto; 
-}
-
-h1 + .aligncenter, h2 + .aligncenter, h3 + .aligncenter, h4 + .aligncenter, h5 + .aligncenter, h6 + .aligncenter,
-h1 + .alignnone, h2 + .alignnone, h3 + .alignnone, h4 + .alignnone, h5 + .alignnone, h6 + .alignnone {
-	margin-top: 0;
 }
 
 .alignnone {
@@ -1370,16 +1413,15 @@ input[type="url"] {
 	background: transparent;
 	border-radius: 0;
     border: 1px solid rgba( 0, 0, 0, 0.2 );
-	box-shadow:  !important;
+	box-shadow: none !important;
     color: #121212;
 	display: block;
 	font-size: 1em;
     margin: 0 0 15px 0;
     padding: 15px;
 	transition: border-color .15s linear;
+	-moz-appearance: none;
 	-webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
     width: 100%;
 }
 
@@ -1467,6 +1509,231 @@ th {
 
 tbody > tr:nth-child(odd) { 
 	background: rgba( 0, 0, 4, 0.05 ); 
+}
+
+
+/* Gutenberg Accent Colors --------------------------------------- */
+
+.entry-content .has-background { background-color: #121212; }
+
+.entry-content .has-black-color { color: #121212; }
+.entry-content .has-black-color a { border-bottom-color: #121212; }
+.entry-content .has-black-color a:hover { color: #121212; }
+.entry-content .has-black-background-color { background-color: #121212; }
+
+.entry-content .has-dark-gray-color { color: #333; }
+.entry-content .has-dark-gray-color a { border-bottom-color: #333; }
+.entry-content .has-dark-gray-color a:hover { color: #333; }
+.entry-content .has-dark-gray-background-color { background-color: #333; }
+
+.entry-content .has-medium-gray-color { color: #555; }
+.entry-content .has-medium-gray-color a { border-bottom-color: #555; }
+.entry-content .has-medium-gray-color a:hover { color: #555; }
+.entry-content .has-medium-gray-background-color { background-color: #555; }
+
+.entry-content .has-light-gray-color { color: #777; }
+.entry-content .has-light-gray-color a { border-bottom-color: #777; }
+.entry-content .has-light-gray-color a:hover { color: #777; }
+.entry-content .has-light-gray-background-color { background-color: #777; }
+
+.entry-content .has-white-color { color: #fff; }
+.entry-content .has-white-color a { border-bottom-color: #fff; }
+.entry-content .has-white-color a:hover { color: #fff; }
+.entry-content .has-white-background-color { background-color: #fff; }
+
+
+/* Gutenberg Font Sizes --------------------------------------- */
+
+.entry-content .has-small-font-size { font-size: .842em; }
+.entry-content .has-regular-font-size { font-size: 1em; }
+
+.entry-content .has-large-font-size,
+.entry-content .has-larger-font-size {
+	line-height: 1.5;
+}
+
+.entry-content .has-large-font-size { font-size: 1.33em; }
+.entry-content .has-larger-font-size { font-size: 1.55em; }
+
+
+/* Block: Button --------------------------------------- */
+
+.entry-content .wp-block-file__button,
+.entry-content .wp-block-button__link {
+	background-color: #000;
+	border-radius: 4px;
+	color: #fff;
+	font-size: 0.85em;
+	font-weight: 700;
+	line-height: 1.2;
+	padding: 1em 1.4em;
+}
+
+.dark-mode .entry-content .wp-block-file__button,
+.dark-mode .entry-content .wp-block-button__link {
+	background-color: #fff;
+	color: #000;
+}
+
+.entry-content .wp-block-file a {
+	color: inherit;
+}
+
+.entry-content a.wp-block-file__button {
+	color: #fff;
+}
+
+.entry-content .wp-block-file__button:hover,
+.entry-content .wp-block-button__link:hover {
+	opacity: .85;
+	text-decoration: none;
+}
+
+
+/* Block: Quote --------------------------------------- */
+
+.entry-content .wp-block-quote.is-large, 
+.entry-content .wp-block-quote.is-style-large {
+	margin: 0 0 30px 0;
+	padding: 0 0 0 30px;
+}
+
+.entry-content blockquote p:last-child {
+	margin-bottom: 0;
+}
+
+.wp-block-quote.is-large p, 
+.wp-block-quote.is-style-large p {
+	font-size: 1.25em;
+	font-style: normal;
+	line-height: 1.5;
+}
+
+.wp-block-quote.is-large cite, 
+.wp-block-quote.is-style-large cite {
+	display: block;
+	font-size: 1em;
+	text-align: left;
+}
+
+
+/* Block: Pullquote --------------------------------------- */
+
+.wp-block-pullquote,
+.wp-block-pullquote blockquote {
+	background: none;
+	border: none;
+	padding: 0;
+}
+
+.wp-block-pullquote blockquote {
+	margin: 0;
+}
+
+.wp-block-pullquote blockquote:before {
+	content: none;
+}
+
+.wp-block-pullquote.alignleft, 
+.wp-block-pullquote.alignright {
+	max-width: 60%;
+}
+
+.wp-block-pullquote blockquote p,
+.wp-block-pullquote.alignleft blockquote p,
+.wp-block-pullquote.alignright blockquote p {
+	font-size: 1.25em;
+	font-weight: 700;
+	letter-spacing: -0.025em;
+	margin-bottom: 1em;
+}
+
+.wp-block-pullquote.alignleft blockquote p,
+.wp-block-pullquote.alignright blockquote p {
+	line-height: 1.3;
+}
+
+
+/* Block: Gallery --------------------------------------- */
+
+.wp-block-gallery .blocks-gallery-image figcaption, 
+.wp-block-gallery .blocks-gallery-item figcaption {
+	color: #fff;
+	margin: 0;
+	padding-bottom: 10px;
+}
+
+.entry-content .wp-block-gallery.alignfull {
+	padding: 0 8px;
+}
+
+.entry-content ul.wp-block-gallery:not(.alignfull):not(.alignwide) {
+	margin-left: 0;
+}
+
+.entry-content ul.wp-block-gallery > li:first-child {
+	margin-top: 0;
+}
+
+.entry-content ul.wp-block-gallery > li:last-child {
+	margin-bottom: 16px;
+}
+
+
+/* Block: Image --------------------------------------- */
+
+.wp-block-image .aligncenter > figcaption, 
+.wp-block-image .alignleft > figcaption, 
+.wp-block-image .alignright > figcaption, 
+.wp-block-image.is-resized > figcaption {
+	display: block;
+}
+
+/* Block: Cover Image --------------------------------------- */
+
+.wp-block-cover-image.alignfull {
+	min-height: 75vh;
+}
+
+.wp-block-cover-image p {
+	font-weight: 400;
+}
+
+
+/* Block: Column --------------------------------------- */
+
+.wp-block-column {
+	padding: 0 5px;
+}
+
+
+/* Block: Audio --------------------------------------- */
+
+.wp-block-audio audio {
+	width: 100%;
+}
+
+
+/* Block: File --------------------------------------- */
+
+.entry-content .wp-block-file {
+	align-items: center;
+	background: rgba( 0, 0, 0, 0.05 );
+	border-radius: 4px;
+	display: flex;
+	justify-content: space-between;
+	margin: 30px 0;
+	padding: 20px;
+}
+
+.entry-content .wp-block-file a:not(.wp-block-file__button) {
+	border: none;
+	font-weight: 500;
+	text-decoration: none;
+}
+
+.entry-content .wp-block-file__button {
+	flex-shrink: 0;
 }
 
 
@@ -1668,6 +1935,21 @@ input.search-field::-moz-placeholder { color: #121212; }
 /* -------------------------------------------------------------------------------- */
 
 
+@media ( max-width: 1240px ) {
+
+
+	/* Entry Content ----------------------------- */
+
+	.entry-content .alignwide {
+		margin-left: calc( 50% - 50vw + 190px );
+		max-width: calc( 100vw - 380px );
+		width: calc( 100vw - 380px );
+	}
+
+
+}
+
+
 @media ( max-width: 1200px ) {
 
 
@@ -1717,6 +1999,13 @@ input.search-field::-moz-placeholder { color: #121212; }
 	.gallery {
 		left: calc( 50% - 50vw + 190px );
 		width: calc( 100vw - 380px );
+	}
+
+	.entry-content .alignfull,
+	.entry-content .alignwide {
+		margin-left: calc( 50% - 50vw + 160px );
+		max-width: calc( 100vw - 320px );
+		width: calc( 100vw - 320px );
 	}
 
 	/* Search ----------------------------- */
@@ -2080,6 +2369,18 @@ input.search-field::-moz-placeholder { color: #121212; }
 
 	/* Entry Content ----------------------------- */
 
+	.entry-content .alignfull {
+		margin-left: calc( 50% - 50vw );
+		max-width: 100vw;
+		width: 100vw;
+	}
+
+	.entry-content .alignwide {
+		margin-left: calc( 50% - 45vw );
+		max-width: 90vw;
+		width: 90vw;
+	}
+
 	.alignnone {
 		margin-left: -80px;
 		margin-right: -80px;
@@ -2308,7 +2609,7 @@ input.search-field::-moz-placeholder { color: #121212; }
 	}
 
 	.entry-content hr {
-		margin: 30px 0;
+		margin: 30px auto;
 	}
 	
 	/* PAGE MEDIA */

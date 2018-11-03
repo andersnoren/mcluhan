@@ -71,10 +71,28 @@ add_action( 'pre_get_posts', 'mcluhan_sort_search_posts_by_date' );
 if ( ! function_exists( 'mcluhan_load_style' ) ) {
 	function mcluhan_load_style() {
 		if ( ! is_admin() ) {
-			wp_register_style( 'mcluhan-fonts', 'https://fonts.googleapis.com/css?family=Archivo:400,400i,600,600i,700,700i&amp;subset=latin-ext', array(), null );
-			wp_register_style( 'fontawesome', get_template_directory_uri() . '/assets/css/font-awesome.css', null );
 
-			wp_enqueue_style( 'mcluhan-style', get_template_directory_uri() . '/style.css', array( 'fontawesome', 'mcluhan-fonts' ) );
+			$dependencies = array();
+
+			/**
+			 * Translators: If there are characters in your language that are not
+			 * supported by the theme fonts, translate this to 'off'. Do not translate
+			 * into your own language.
+			 */
+			$google_fonts = _x( 'on', 'Google Fonts: on or off', 'mcluhan' );
+
+			if ( 'off' !== $google_fonts ) {
+
+				// Register Google Fonts
+				wp_register_style( 'mcluhan-fonts', '//fonts.googleapis.com/css?family=Archivo:400,400i,600,600i,700,700i&amp;subset=latin-ext', false, 1.0, 'all' );
+				$dependencies[] = 'mcluhan-fonts';
+
+			}
+
+			wp_register_style( 'fontawesome', get_template_directory_uri() . '/assets/css/font-awesome.css', null );
+			$dependencies[] = 'fontawesome';
+
+			wp_enqueue_style( 'mcluhan-style', get_template_directory_uri() . '/style.css', $dependencies );
 		}
 	}
 }
@@ -87,10 +105,22 @@ add_action( 'wp_enqueue_scripts', 'mcluhan_load_style' );
 
 if ( ! function_exists( 'mcluhan_add_editor_styles' ) ) {
 	function mcluhan_add_editor_styles() {
-		add_editor_style( array(
-			'mcluhan-editor-styles.css',
-			'https://fonts.googleapis.com/css?family=Archivo:400,400i,600,700,700i&amp;subset=latin-ext',
-		) );
+
+		$editor_styles = array( 'mcluhan-editor-styles.css' );
+
+		/**
+		 * Translators: If there are characters in your language that are not
+		 * supported by the theme fonts, translate this to 'off'. Do not translate
+		 * into your own language.
+		 */
+		$google_fonts = _x( 'on', 'Google Fonts: on or off', 'mcluhan' );
+
+		if ( 'off' !== $google_fonts ) {
+			$editor_styles[] = '//fonts.googleapis.com/css?family=Archivo:400,400i,600,700,700i&amp;subset=latin-ext';
+		}
+
+		add_editor_style( $editor_styles );
+
 	}
 }
 add_action( 'init', 'mcluhan_add_editor_styles' );
@@ -685,5 +715,118 @@ add_action( 'customize_register', array( 'McLuhan_Customize', 'mcluhan_register'
 
 // Enqueue live preview javascript in Theme Customizer admin screen
 add_action( 'customize_preview_init', array( 'McLuhan_Customize', 'mcluhan_live_preview' ) );
+
+
+/* ---------------------------------------------------------------------------------------------
+   SPECIFY GUTENBERG SUPPORT
+------------------------------------------------------------------------------------------------ */
+
+
+if ( ! function_exists( 'mcluhan_add_gutenberg_features' ) ) :
+
+	function mcluhan_add_gutenberg_features() {
+
+		/* Gutenberg Features --------------------------------------- */
+
+		add_theme_support( 'align-wide' );
+
+		/* Gutenberg Palette --------------------------------------- */
+
+		add_theme_support( 'editor-color-palette', array(
+			array(
+				'name' 	=> _x( 'Black', 'Name of the black color in the Gutenberg palette', 'mcluhan' ),
+				'slug' 	=> 'black',
+				'color' => '#121212',
+			),
+			array(
+				'name' 	=> _x( 'Dark Gray', 'Name of the dark gray color in the Gutenberg palette', 'mcluhan' ),
+				'slug' 	=> 'dark-gray',
+				'color' => '#333',
+			),
+			array(
+				'name' 	=> _x( 'Medium Gray', 'Name of the medium gray color in the Gutenberg palette', 'mcluhan' ),
+				'slug' 	=> 'medium-gray',
+				'color' => '#555',
+			),
+			array(
+				'name' 	=> _x( 'Light Gray', 'Name of the light gray color in the Gutenberg palette', 'mcluhan' ),
+				'slug' 	=> 'light-gray',
+				'color' => '#777',
+			),
+			array(
+				'name' 	=> _x( 'White', 'Name of the white color in the Gutenberg palette', 'mcluhan' ),
+				'slug' 	=> 'white',
+				'color' => '#fff',
+			),
+		) );
+
+		/* Gutenberg Font Sizes --------------------------------------- */
+
+		add_theme_support( 'editor-font-sizes', array(
+			array(
+				'name' 		=> _x( 'Small', 'Name of the small font size in Gutenberg', 'mcluhan' ),
+				'shortName' => _x( 'S', 'Short name of the small font size in the Gutenberg editor.', 'mcluhan' ),
+				'size' 		=> 16,
+				'slug' 		=> 'small',
+			),
+			array(
+				'name' 		=> _x( 'Regular', 'Name of the regular font size in Gutenberg', 'mcluhan' ),
+				'shortName' => _x( 'M', 'Short name of the regular font size in the Gutenberg editor.', 'mcluhan' ),
+				'size' 		=> 18,
+				'slug' 		=> 'regular',
+			),
+			array(
+				'name' 		=> _x( 'Large', 'Name of the large font size in Gutenberg', 'mcluhan' ),
+				'shortName' => _x( 'L', 'Short name of the large font size in the Gutenberg editor.', 'mcluhan' ),
+				'size' 		=> 24,
+				'slug' 		=> 'large',
+			),
+			array(
+				'name' 		=> _x( 'Larger', 'Name of the larger font size in Gutenberg', 'mcluhan' ),
+				'shortName' => _x( 'XL', 'Short name of the larger font size in the Gutenberg editor.', 'mcluhan' ),
+				'size' 		=> 28,
+				'slug' 		=> 'larger',
+			),
+		) );
+
+	}
+	add_action( 'after_setup_theme', 'mcluhan_add_gutenberg_features' );
+
+endif;
+
+
+/* ---------------------------------------------------------------------------------------------
+   GUTENBERG EDITOR STYLES
+   --------------------------------------------------------------------------------------------- */
+
+
+if ( ! function_exists( 'mcluhan_block_editor_styles' ) ) :
+
+	function mcluhan_block_editor_styles() {
+
+		$dependencies = array();
+
+		/**
+		 * Translators: If there are characters in your language that are not
+		 * supported by the theme fonts, translate this to 'off'. Do not translate
+		 * into your own language.
+		 */
+		$google_fonts = _x( 'on', 'Google Fonts: on or off', 'mcluhan' );
+
+		if ( 'off' !== $google_fonts ) {
+
+			// Register Google Fonts
+			wp_register_style( 'mcluhan-block-editor-styles-font', '//fonts.googleapis.com/css?family=Archivo:400,400i,600,600i,700,700i&amp;subset=latin-ext', false, 1.0, 'all' );
+			$dependencies[] = 'mcluhan-block-editor-styles-font';
+
+		}
+
+		// Enqueue the editor styles
+		wp_enqueue_style( 'mcluhan-block-editor-styles', get_theme_file_uri( '/mcluhan-gutenberg-editor-style.css' ), $dependencies, '1.0', 'all' );
+
+	}
+	add_action( 'enqueue_block_editor_assets', 'mcluhan_block_editor_styles', 1 );
+
+endif;
 
 ?>

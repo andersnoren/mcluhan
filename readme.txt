@@ -72,6 +72,25 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 1.13 (2018-11-03)
+-------------------------
+- Updated with Gutenberg support
+	- Gutenberg editor styles
+	- Styling of Gutenberg blocks
+	- Custom McLuhan Gutenberg palette
+	- Custom McLuhan Gutenberg typography styles
+- Added option to disable Google Fonts with a translateable string
+- Updated theme description
+
+Version 1.12 (2018-09-12)
+-------------------------
+- Updated screenshot.png to comply with new requirements
+
+Version 1.11 (2018-05-24)
+-------------------------
+- Replaced strftime() with date_i18n()
+- Improved styling of checkboxes in the comment form
+
 Version 1.10 (2018-04-14)
 -------------------------
 - Fixed z-index issue with the header overlapping the WordPress admin bar dropdowns
