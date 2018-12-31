@@ -1,12 +1,10 @@
 /*---------------------------------------------------------------------------------
-
 	Editor styles for McLuhan
-
 ---------------------------------------------------------------------------------*/
 
 
 body#tinymce.wp-editor { 
-	color: #000;
+	color: #121212;
 	font-family: 'Archivo', 'Helvetica Neue', Helvetica, sans-serif;
     font-size: 20px;
 	margin: 0 auto;

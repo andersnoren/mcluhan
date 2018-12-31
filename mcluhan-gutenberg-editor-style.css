@@ -1,43 +1,46 @@
 /*---------------------------------------------------------------------------------
-	Gutenberg editor styles for Hoffman
+	Gutenberg editor styles for McLuhan
 ---------------------------------------------------------------------------------*/
 
 
 /* Structure ---------------------------------------------- */
 
 
-.edit-post-visual-editor {
+.block-editor__container .editor-styles-wrapper {
+	font-size: 18px;
+}
+
+.editor-rich-text__tinymce {
 	color: #121212;
 	font-family: 'Archivo', 'Helvetica Neue', sans-serif;
-	font-size: 18px;
 	-webkit-font-smoothing: antialiased;
 }
 
-.edit-post-visual-editor * {
+.editor-rich-text__tinymce * {
 	font-family: inherit !important;
 }
 
-body.gutenberg-editor-page .edit-post-visual-editor .editor-default-block-appender, 
-body.gutenberg-editor-page .edit-post-visual-editor .editor-block-list__block,
-body.gutenberg-editor-page .edit-post-visual-editor .editor-post-title__block {
+.editor-styles-wrapper .editor-default-block-appender, 
+.editor-styles-wrapper .editor-block-list__block,
+.editor-styles-wrapper .editor-post-title__block {
     max-width: 590px;
 }
 
-body.gutenberg-editor-page .editor-block-list__block[data-align="full"] {
+.editor-styles-wrapper .editor-block-list__block[data-align="full"] {
     max-width: none;
 }
 
-body.gutenberg-editor-page .editor-block-list__block[data-align="wide"] {
+.editor-styles-wrapper .editor-block-list__block[data-align="wide"] {
     max-width: 1060px;
 }
 
-body.gutenberg-editor-page .editor-block-list__block[data-align="right"] .editor-block-list__block-edit,
-body.gutenberg-editor-page .editor-block-list__block[data-align="left"] .editor-block-list__block-edit {
+.editor-styles-wrapper .editor-block-list__block[data-align="right"] .editor-block-list__block-edit,
+.editor-styles-wrapper .editor-block-list__block[data-align="left"] .editor-block-list__block-edit {
     max-width: 50%;
 }
 
-.editor-rich-text__tinymce.mce-content-body,
-body.gutenberg-editor-page .editor-block-list__block .mce-content-body {
+.editor-styles-wrapper .editor-rich-text__tinymce,
+.editor-styles-wrapper .editor-rich-text__tinymce.mce-content-body {
 	line-height: 1.6;
 }
 
@@ -45,6 +48,8 @@ body.gutenberg-editor-page .editor-block-list__block .mce-content-body {
 /* Typography --------------------------------------------- */
 
 .editor-post-title__block .editor-post-title__input {
+	color: #121212;
+	font-family: 'Archivo', 'Helvetica Neue', sans-serif;
 	font-size: 36px;
 	font-weight: 600;
 	letter-spacing: -.45px;
@@ -59,32 +64,32 @@ body.gutenberg-editor-page .editor-block-list__block .mce-content-body {
 	text-decoration: underline;
 }
 
-body.gutenberg-editor-page .edit-post-visual-editor p {
+.block-editor__container .editor-styles-wrapper p {
 	font-size: inherit;
 }
 
-body.gutenberg-editor-page .editor-block-list__block, 
-body.gutenberg-editor-page .editor-block-list__block p {
+.editor-styles-wrapper .editor-block-list__block, 
+.editor-styles-wrapper .editor-block-list__block p {
 	font-size: inherit;
 }
 
-body.gutenberg-editor-page .wp-block-heading h1,
-body.gutenberg-editor-page .wp-block-heading h2,
-body.gutenberg-editor-page .wp-block-heading h3,
-body.gutenberg-editor-page .wp-block-heading h4,
-body.gutenberg-editor-page .wp-block-heading h5,
-body.gutenberg-editor-page .wp-block-heading h6 {
+.editor-styles-wrapper .wp-block-heading h1,
+.editor-styles-wrapper .wp-block-heading h2,
+.editor-styles-wrapper .wp-block-heading h3,
+.editor-styles-wrapper .wp-block-heading h4,
+.editor-styles-wrapper .wp-block-heading h5,
+.editor-styles-wrapper .wp-block-heading h6 {
 	font-weight: 600;
-	line-height: 1.2;
+	line-height: 1.2 !important;
 	margin: 50px 0 25px;
 }
 
-body.gutenberg-editor-page .wp-block-heading h1 { font-size: 2em; }
-body.gutenberg-editor-page .wp-block-heading h2 { font-size: 1.75em; }
-body.gutenberg-editor-page .wp-block-heading h3 { font-size: 1.5em; }
-body.gutenberg-editor-page .wp-block-heading h4 { font-size: 1.25em; }
-body.gutenberg-editor-page .wp-block-heading h5 { font-size: 1.1em; }
-body.gutenberg-editor-page .wp-block-heading h6 { font-size: 1em; }
+.editor-styles-wrapper .wp-block-heading h1 { font-size: 2em; }
+.editor-styles-wrapper .wp-block-heading h2 { font-size: 1.75em; }
+.editor-styles-wrapper .wp-block-heading h3 { font-size: 1.5em; }
+.editor-styles-wrapper .wp-block-heading h4 { font-size: 1.25em; }
+.editor-styles-wrapper .wp-block-heading h5 { font-size: 1.1em; }
+.editor-styles-wrapper .wp-block-heading h6 { font-size: 1em; }
 
 p.has-drop-cap:not(:focus):first-letter {
     font-size: 7.5em;
@@ -121,8 +126,8 @@ pre {
 /* Custom Text Sizes -------------------------------------- */
 
 
-body.gutenberg-editor-page .edit-post-visual-editor p.mce-content-body.has-large-font-size,
-body.gutenberg-editor-page .edit-post-visual-editor p.mce-content-body.has-larger-font-size {
+.editor-styles-wrapper .edit-post-visual-editor p.mce-content-body.has-large-font-size,
+.editor-styles-wrapper .edit-post-visual-editor p.mce-content-body.has-larger-font-size {
 	line-height: 1.5;
 }
 
@@ -366,8 +371,8 @@ cite:before,
 	max-width: 50%;
 }
 
-body.gutenberg-editor-page .wp-block-pullquote.alignleft p,
-body.gutenberg-editor-page .wp-block-pullquote.alignright p {
+.editor-styles-wrapper .wp-block-pullquote.alignleft p,
+.editor-styles-wrapper .wp-block-pullquote.alignright p {
 	font-size: 1.1em;
 	line-height: 1.45;
 }
@@ -375,7 +380,7 @@ body.gutenberg-editor-page .wp-block-pullquote.alignright p {
 
 /* Block: Cover Image ---------------------------------------- */
 
-body.gutenberg-editor-page .wp-block-cover-image p {
+.editor-styles-wrapper .wp-block-cover p {
 	font-size: 2em;
 	font-weight: 300;
 }

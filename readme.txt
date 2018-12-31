@@ -72,6 +72,20 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 1.16 (2018-12-23)
+-------------------------
+- Fixed the min-width on button elements causing issues with the media player
+
+Version 1.15 (2018-12-07)
+-------------------------
+- Fixed Gutenberg style changes required due to changes in the block editor CSS and classes
+- Fixed the Classic Block TinyMCE buttons being set to the wrong font
+
+Version 1.14 (2018-11-30)
+-------------------------
+- Fixed Gutenberg editor styles font being overwritten
+- Fixed incorrect comment heading in Gutenberg editor stylesheet
+
 Version 1.13 (2018-11-03)
 -------------------------
 - Updated with Gutenberg support
