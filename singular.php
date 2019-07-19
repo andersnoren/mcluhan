@@ -4,11 +4,15 @@ get_header();
 
 if ( have_posts() ) :
 
-	while ( have_posts() ) : the_post(); ?>
+	while ( have_posts() ) : the_post(); 
+
+		$post_type = get_post_type();
+	
+		?>
 
 		<article <?php post_class(); ?>>
 
-			<?php if ( has_post_thumbnail() ) : ?>
+			<?php if ( has_post_thumbnail() && ! post_password_required() ) : ?>
 
 				<div class="featured-image">
 					<?php the_post_thumbnail( 'mcluhan_fullscreen-image' ); ?>
@@ -62,7 +66,7 @@ if ( have_posts() ) :
 				'before' => '<p class="section-inner linked-pages">' . __( 'Pages', 'mcluhan' ) . ':',
 			) );
 
-			if ( get_post_type() == 'post' && get_the_tags() ) : ?>
+			if ( $post_type == 'post' && get_the_tags() ) : ?>
 
 				<div class="meta bottom section-inner">
 
@@ -94,12 +98,12 @@ if ( have_posts() ) :
 
 			<?php endif;
 
-			// If comments are open, or there are at least one comment
-			if ( get_comments_number() || comments_open() ) : ?>
+			// Output comments wrapper if it's a post, or if comments are open, or if there's a comment number – and check for password
+			if ( ( $post_type == 'post' || comments_open() || get_comments_number() ) && ! post_password_required() ) : ?>
 
-				<div class="section-inner wide">
+				<div class="comments-section-inner section-inner wide">
 					<?php comments_template(); ?>
-				</div>
+				</div><!-- .comments-section-inner -->
 
 			<?php endif; ?>
 
@@ -107,9 +111,10 @@ if ( have_posts() ) :
 
 		<?php
 
-		if ( get_post_type() == 'post' ) {
+		if ( $post_type == 'post' ) {
 			get_template_part( 'related-posts' );
 		}
+
 	endwhile;
 
 endif;

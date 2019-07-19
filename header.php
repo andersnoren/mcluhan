@@ -15,15 +15,23 @@
 
 	<body <?php body_class(); ?>>
 
+		<?php 
+		if ( function_exists( 'wp_body_open' ) ) {
+			wp_body_open(); 
+		}
+		?>
+
+		<a class="skip-link button" href="#site-content"><?php _e( 'Skip to the content', 'mcluhan' ); ?></a>
+
 		<header class="site-header group">
 
 			<?php if ( is_singular() ) : ?>
 
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url() ); ?>" class="site-name"><?php bloginfo( 'name' ); ?></a></h1>
+				<p class="site-title"><a href="<?php echo esc_url( home_url() ); ?>" class="site-name"><?php bloginfo( 'name' ); ?></a></p>
 
 			<?php else : ?>
 
-				<h2 class="site-title"><a href="<?php echo esc_url( home_url() ); ?>" class="site-name"><?php bloginfo( 'name' ); ?></a></h2>
+				<h1 class="site-title"><a href="<?php echo esc_url( home_url() ); ?>" class="site-name"><?php bloginfo( 'name' ); ?></a></h1>
 
 			<?php endif; ?>
 
@@ -70,30 +78,34 @@
 
 			<?php if ( has_nav_menu( 'social-menu' ) || ( ! get_theme_mod( 'mcluhan_hide_social' ) || is_customize_preview() ) ) : ?>
 
-				<ul class="social-menu desktop">
+				<div class="social-menu desktop">
 
-					<li><a href="<?php echo esc_url( home_url( '?s=' ) ); ?>"></a></li>
+					<ul class="social-menu-inner">
 
-					<?php
+						<li><a href="<?php echo esc_url( home_url( '?s=' ) ); ?>"></a></li>
 
-					$social_args = array(
-						'theme_location'	=> 'social-menu',
-						'container'			=> '',
-						'container_class'	=> 'menu-social group',
-						'items_wrap'		=> '%3$s',
-						'menu_id'			=> 'menu-social-items',
-						'menu_class'		=> 'menu-items',
-						'depth'				=> 1,
-						'link_before'		=> '<span class="screen-reader-text">',
-						'link_after'		=> '</span>',
-						'fallback_cb'		=> '',
-					);
+						<?php
 
-					wp_nav_menu( $social_args );
+						$social_args = array(
+							'theme_location'	=> 'social-menu',
+							'container'			=> '',
+							'container_class'	=> 'menu-social group',
+							'items_wrap'		=> '%3$s',
+							'menu_id'			=> 'menu-social-items',
+							'menu_class'		=> 'menu-items',
+							'depth'				=> 1,
+							'link_before'		=> '<span class="screen-reader-text">',
+							'link_after'		=> '</span>',
+							'fallback_cb'		=> '',
+						);
 
-					?>
+						wp_nav_menu( $social_args );
 
-				</ul><!-- .social-menu -->
+						?>
+
+					</ul><!-- .social-menu-inner -->
+
+				</div><!-- .social-menu -->
 
 			<?php endif; ?>
 
@@ -114,11 +126,15 @@
 
 			<?php if ( has_nav_menu( 'social-menu' ) && ( ! get_theme_mod( 'mcluhan_hide_social' ) || is_customize_preview() ) ) : ?>
 
-				<ul class="social-menu mobile">
+				<div class="social-menu mobile">
 
-					<?php wp_nav_menu( $social_args ); ?>
+					<ul class="social-menu-inner">
 
-				</ul><!-- .social-menu -->
+						<?php wp_nav_menu( $social_args ); ?>
+
+					</ul><!-- .social-menu-inner -->
+
+				</div><!-- .social-menu -->
 
 			<?php endif; ?>
 
@@ -144,4 +160,4 @@
 
 		</div><!-- .search-overlay -->
 
-		<main class="site-content">
+		<main class="site-content" id="site-content">

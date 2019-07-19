@@ -509,7 +509,7 @@ if ( ! function_exists( 'mcluhan_admin_notices' ) ) {
 
 			<div class="notice notice-info is-dismissible">
 				<?php /* Translators: %1$1s = opening link to the demo site, %2$2s = closing link tag, %3$3s = link to the reading options, %4$4s = closing link tag */ ?>
-				<p><?php printf( _x( 'To make McLuhan display like the %1$1sdemo site%2$2s, with all posts listed on archive pages, you need to change the "Blog pages show at most" setting in %3$3sSettings > Reading%4$4s to a value exceeding the number of posts on your site.', 'Translators: %1$1s = opening link to the demo site, %2$2s = closing link tag, %3$3s = link to the reading options, %4$4s = closing link tag', 'mcluhan' ), '<a href="http://www.andersnoren.se/themes/mcluhan/">', '</a>', '<a href="' . admin_url( 'options-reading.php' ) . '">', '</a>' ); ?></p>
+				<p><?php printf( _x( 'To make McLuhan display like the %1$1sdemo site%2$2s, with all posts listed on archive pages, you need to change the "Blog pages show at most" setting in %3$3sSettings > Reading%4$4s to a value exceeding the number of posts on your site.', 'Translators: %1$1s = opening link to the demo site, %2$2s = closing link tag, %3$3s = link to the reading options, %4$4s = closing link tag', 'mcluhan' ), '<a href="https://www.andersnoren.se/themes/mcluhan/">', '</a>', '<a href="' . admin_url( 'options-reading.php' ) . '">', '</a>' ); ?></p>
 			</div>
 
 			<?php

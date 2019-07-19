@@ -29,7 +29,7 @@
 
 <?php elseif ( $comments ) : ?>
 
-	<div id="respond">
+	<div id="respond" class="comment-respond">
 
 		<p class="closed"><?php _e( 'Comments closed', 'mcluhan' ); ?></p>
 

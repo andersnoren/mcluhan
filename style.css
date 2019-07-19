@@ -2,13 +2,14 @@
 
 	Theme Name: McLuhan
     Text Domain: mcluhan
-	Version: 1.16
-	Description: McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, Gutenberg support, a responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template. Demo: http://www.andersnoren.se/themes/mcluhan/
-	Tags: two-columns, left-sidebar, custom-menu, custom-colors, editor-style, featured-images, full-width-template, sticky-post, threaded-comments, theme-options, blog, translation-ready
+	Version: 1.19
+	Description: McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, Block Editor/Gutenberg support, a responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template. Demo: https://www.andersnoren.se/themes/mcluhan/
+	Tags: two-columns, left-sidebar, custom-menu, custom-colors, editor-style, featured-images, full-width-template, sticky-post, threaded-comments, theme-options, blog, translation-ready, block-styles, wide-blocks
 	Author: Anders Norén
-	Author URI: http://www.andersnoren.se
+	Author URI: https://www.andersnoren.se
 	License: GNU General Public License version 2.0
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
+	Theme URI: https://www.andersnoren.se/teman/mcluhan-wordpress-theme/
 	
 	All files, unless otherwise stated, are released under the GNU General Public License
 	version 2.0 (http://www.gnu.org/licenses/gpl-2.0.html)
@@ -100,6 +101,29 @@ input[type="search"]::-webkit-search-results-decoration {
 	top: 5px;
 	width: auto;
 	z-index: 100001; /* Above WP toolbar. */
+}
+
+/* Skip Link */
+
+.skip-link {
+	position: absolute;
+		left: -9999rem;
+		top: 2.5rem;
+	z-index: 999999999;
+}
+
+.skip-link:focus {
+	left: 2.5rem;
+	text-decoration: none;
+}
+
+/* Accessibility Settings */
+
+@media ( prefers-reduced-motion: reduce ) {
+	* {
+		animation-duration: 0s !important;
+		transition-duration: 0s !important;
+	}
 }
 
 
@@ -418,21 +442,18 @@ body.hide-social .social-menu {
 		right: 0;
 }
 
-.social-menu:after {
-	clear: both;
-	content: "";
-	display: block;
+.social-menu-inner {
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	margin: -10px 0 0 -10px;
+	padding: 0;
 }
 
 .social-menu li { 
 	display: block;
-	float: left;
-	margin: 0 0 0 10px;
+	margin: 10px 0 0 10px;
 	position: relative;
-}
-
-.social-menu li:first-child { 
-	margin-left: 0;
 }
 
 .screen-reader-text {
@@ -840,11 +861,13 @@ body.hide-social .social-menu {
 
 /* Comments ---------------------------- */
 
-.comment { 
+.comment,
+.pingback { 
 	margin-top: 50px; 
 }
 
-.comments > .comment:first-of-type {
+.comments > .comment:first-of-type,
+.comments > .pingback:first-of-type {
 	margin-top: 0;
 }
 
@@ -1873,7 +1896,7 @@ input.search-field::-moz-placeholder { color: #121212; }
 	border-bottom: none;
 	font-size: 32px;
 	padding: 24px 0 24px 69px;
-	width: 400px;
+	width: 450px;
 }
 
 

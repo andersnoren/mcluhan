@@ -2,7 +2,7 @@
 Contributors: Anlino
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=anders%40andersnoren%2ese&lc=US&item_name=Free%20WordPress%20Themes%20from%20Anders%20Noren&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.4
-Tested up to: 4.8
+Tested up to: 5.2
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,32 @@ Source: http://fontawesome.io/
 
 
 == Changelog ==
+
+Version 1.20 (2019-07-19)
+-------------------------
+- Added theme URI to style.css
+- Updated "Tested up to"
+- Added theme tags
+- Added skip link
+- Don't show comments if the post is password protected
+- Don't show the post thumbnail if the post is password protected
+- Fixed font issues in the block editor styles
+- Updated social menu styling to handle wrapping better
+- Updated resolution of screenshot.png to 1200x900 (same screenshot, different size)
+- Compressed theme SVGs
+
+Version 1.19 (2019-04-07)
+-------------------------
+- Added the new wp_body_open() function, along with a function_exists check
+
+Version 1.18 (2019-03-22)
+-------------------------
+- Added margin to pingbacks
+- Increased width of search field
+
+Version 1.17 (2019-01-05)
+-------------------------
+- Changed the site title to be a paragraph on singular, and an h1 on other pages
 
 Version 1.16 (2018-12-23)
 -------------------------

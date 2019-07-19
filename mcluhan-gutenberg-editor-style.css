@@ -12,7 +12,12 @@
 
 .editor-rich-text__tinymce {
 	color: #121212;
+	-webkit-font-smoothing: antialiased;
+}
+
+.editor-styles-wrapper > * {
 	font-family: 'Archivo', 'Helvetica Neue', sans-serif;
+	font-size: 17px;
 	-webkit-font-smoothing: antialiased;
 }
 
