@@ -704,7 +704,7 @@ class McLuhan_Customize {
 	public static function mcluhan_live_preview() {
 		wp_enqueue_script( 'mcluhan-themecustomizer', get_template_directory_uri() . '/assets/js/theme-customizer.js', array( 'jquery', 'customize-preview' ), '', true );
 	}
-
+	
 }
 
 // Output custom CSS to live site
@@ -723,7 +723,6 @@ add_action( 'customize_preview_init', array( 'McLuhan_Customize', 'mcluhan_live_
 
 
 if ( ! function_exists( 'mcluhan_add_gutenberg_features' ) ) :
-
 	function mcluhan_add_gutenberg_features() {
 
 		/* Gutenberg Features --------------------------------------- */
@@ -791,7 +790,6 @@ if ( ! function_exists( 'mcluhan_add_gutenberg_features' ) ) :
 
 	}
 	add_action( 'after_setup_theme', 'mcluhan_add_gutenberg_features' );
-
 endif;
 
 
@@ -801,7 +799,6 @@ endif;
 
 
 if ( ! function_exists( 'mcluhan_block_editor_styles' ) ) :
-
 	function mcluhan_block_editor_styles() {
 
 		$dependencies = array();
@@ -826,7 +823,6 @@ if ( ! function_exists( 'mcluhan_block_editor_styles' ) ) :
 
 	}
 	add_action( 'enqueue_block_editor_assets', 'mcluhan_block_editor_styles', 1 );
-
 endif;
 
 ?>
