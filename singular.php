@@ -35,7 +35,7 @@ if ( have_posts() ) :
 
 					<div class="meta">
 
-						<time><a href="<?php the_permalink(); ?>" title="<?php the_time( get_option( 'date_format' ) ); ?> <?php the_time( get_option( 'time_format' ) ); ?>"><?php the_time( get_option( 'date_format' ) ); ?></a></time>
+						<time><a href="<?php the_permalink(); ?>"><?php the_time( get_option( 'date_format' ) ); ?></a></time>
 
 						<?php if ( ! is_attachment() ) : ?>
 
@@ -69,9 +69,7 @@ if ( have_posts() ) :
 			if ( $post_type == 'post' && get_the_tags() ) : ?>
 
 				<div class="meta bottom section-inner">
-
 					<p class="tags"><?php the_tags( ' #', ' #', ' ' ); ?></p>
-
 				</div> <!-- .meta -->
 
 				<?php
@@ -98,8 +96,8 @@ if ( have_posts() ) :
 
 			<?php endif;
 
-			// Output comments wrapper if it's a post, or if comments are open, or if there's a comment number – and check for password
-			if ( ( $post_type == 'post' || comments_open() || get_comments_number() ) && ! post_password_required() ) : ?>
+			// Output comments wrapper if comments are open, or if there's a comment number – and check for password
+			if ( ( comments_open() || get_comments_number() ) && ! post_password_required() ) : ?>
 
 				<div class="comments-section-inner section-inner wide">
 					<?php comments_template(); ?>

@@ -16,8 +16,8 @@
 
 		<?php get_search_form(); ?>
 
-	</div>
+	</div><!-- .section-inner -->
 
-</div> <!-- .post -->
+</div><!-- .post -->
 
 <?php get_footer(); ?>

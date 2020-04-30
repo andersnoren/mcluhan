@@ -59,6 +59,8 @@ if ( $related_posts ) : ?>
 
 			<?php
 
+			global $post;
+
 			foreach ( $related_posts as $post ) {
 				setup_postdata( $post );
 
@@ -71,7 +73,7 @@ if ( $related_posts ) : ?>
 
 				?>
 
-				<a <?php post_class( 'related-post' ); ?> id="post-<?php the_ID(); ?>" href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
+				<a <?php post_class( 'related-post' ); ?> id="post-<?php the_ID(); ?>" href="<?php the_permalink(); ?>">
 					<div class="bg-image related-post-image"<?php echo $image_style_attribute; ?>>
 						<?php if ( isset( $image ) ) : ?>
 							<img src="<?php echo esc_url( $image[0] ); ?>" />

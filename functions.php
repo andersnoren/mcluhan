@@ -50,63 +50,55 @@ if ( ! function_exists( 'mcluhan_setup' ) ) {
 add_action( 'after_setup_theme', 'mcluhan_setup' );
 
 
-
-/* IN SEARCH, LIST RESULTS BY DATE
+/* INCLUDE REQUIRED FILES
 ------------------------------------------------ */
 
-if ( ! function_exists( 'mcluhan_sort_search_posts_by_date' ) ) {
-	function mcluhan_sort_search_posts_by_date( $query ) {
-		if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
-			$query->set( 'orderby', 'date' );
-		}
-	}
-}
-add_action( 'pre_get_posts', 'mcluhan_sort_search_posts_by_date' );
+// Handle Customizer settings
+require get_template_directory() . '/inc/classes/class-mcluhan-customize.php';
 
 
+/*	-----------------------------------------------------------------------------------------------
+	ENQUEUE STYLES
+--------------------------------------------------------------------------------------------------- */
 
-/* ENQUEUE STYLES
------------------------------------------------- */
-
-if ( ! function_exists( 'mcluhan_load_style' ) ) {
+if ( ! function_exists( 'mcluhan_load_style' ) ) :
 	function mcluhan_load_style() {
-		if ( ! is_admin() ) {
 
-			$dependencies = array();
+		$dependencies = array();
+		$theme_version = wp_get_theme( 'mcluhan' )->get( 'Version' );
 
-			/**
-			 * Translators: If there are characters in your language that are not
-			 * supported by the theme fonts, translate this to 'off'. Do not translate
-			 * into your own language.
-			 */
-			$google_fonts = _x( 'on', 'Google Fonts: on or off', 'mcluhan' );
+		/**
+		 * Translators: If there are characters in your language that are not
+		 * supported by the theme fonts, translate this to 'off'. Do not translate
+		 * into your own language.
+		 */
+		$google_fonts = _x( 'on', 'Google Fonts: on or off', 'mcluhan' );
 
-			if ( 'off' !== $google_fonts ) {
+		if ( 'off' !== $google_fonts ) {
 
-				// Register Google Fonts
-				wp_register_style( 'mcluhan-fonts', '//fonts.googleapis.com/css?family=Archivo:400,400i,600,600i,700,700i&amp;subset=latin-ext', false, 1.0, 'all' );
-				$dependencies[] = 'mcluhan-fonts';
+			// Register Google Fonts
+			wp_register_style( 'mcluhan-fonts', '//fonts.googleapis.com/css?family=Archivo:400,400i,600,600i,700,700i&amp;subset=latin-ext', false, 1.0, 'all' );
+			$dependencies[] = 'mcluhan-fonts';
 
-			}
-
-			wp_register_style( 'fontawesome', get_template_directory_uri() . '/assets/css/font-awesome.css', null );
-			$dependencies[] = 'fontawesome';
-
-			wp_enqueue_style( 'mcluhan-style', get_template_directory_uri() . '/style.css', $dependencies );
 		}
+
+		wp_register_style( 'fontawesome', get_template_directory_uri() . '/assets/css/font-awesome.css', null );
+		$dependencies[] = 'fontawesome';
+
+		wp_enqueue_style( 'mcluhan-style', get_template_directory_uri() . '/style.css', $dependencies, $theme_version );
 	}
-}
-add_action( 'wp_enqueue_scripts', 'mcluhan_load_style' );
+	add_action( 'wp_enqueue_scripts', 'mcluhan_load_style' );
+endif;
 
 
+/*	-----------------------------------------------------------------------------------------------
+	ADD EDITOR STYLES
+--------------------------------------------------------------------------------------------------- */
 
-/* ADD EDITOR STYLES
------------------------------------------------- */
-
-if ( ! function_exists( 'mcluhan_add_editor_styles' ) ) {
+if ( ! function_exists( 'mcluhan_add_editor_styles' ) ) :
 	function mcluhan_add_editor_styles() {
 
-		$editor_styles = array( 'mcluhan-editor-styles.css' );
+		$editor_styles = array( 'assets/css/mcluhan-classic-editor-styles.css' );
 
 		/**
 		 * Translators: If there are characters in your language that are not
@@ -122,24 +114,32 @@ if ( ! function_exists( 'mcluhan_add_editor_styles' ) ) {
 		add_editor_style( $editor_styles );
 
 	}
-}
-add_action( 'init', 'mcluhan_add_editor_styles' );
+	add_action( 'init', 'mcluhan_add_editor_styles' );
+endif;
 
 
-
-/* DEACTIVATE DEFAULT WP GALLERY STYLES
------------------------------------------------- */
+/*	-----------------------------------------------------------------------------------------------
+	DEACTIVATE DEFAULT CORE GALLERY STYLES
+	Only applies to the shortcode gallery.
+--------------------------------------------------------------------------------------------------- */
 
 add_filter( 'use_default_gallery_style', '__return_false' );
-
 
 
 /* ENQUEUE SCRIPTS
 ------------------------------------------------ */
 
-if ( ! function_exists( 'mcluhan_enqueue_scripts' ) ) {
+if ( ! function_exists( 'mcluhan_enqueue_scripts' ) ) :
 	function mcluhan_enqueue_scripts() {
-		wp_enqueue_script( 'mcluhan_global', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery', 'imagesloaded', 'masonry' ), '', true );
+
+		$theme_version = wp_get_theme( 'mcluhan' )->get( 'Version' );
+
+		wp_enqueue_script( 'mcluhan_global', get_template_directory_uri() . '/assets/js/global.js', array( 'jquery', 'imagesloaded', 'masonry' ), $theme_version, true );
+
+		// Enqueue comment reply
+		if ( ( ! is_admin() ) && is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+			wp_enqueue_script( 'comment-reply' );
+		}
 
 		global $wp_query;
 
@@ -148,14 +148,15 @@ if ( ! function_exists( 'mcluhan_enqueue_scripts' ) ) {
 			'ajaxurl'		=> admin_url( 'admin-ajax.php' ),
 			'query_vars'	=> wp_json_encode( $wp_query->query ),
 		) );
+
 	}
-}
-add_action( 'wp_enqueue_scripts', 'mcluhan_enqueue_scripts' );
+	add_action( 'wp_enqueue_scripts', 'mcluhan_enqueue_scripts' );
+endif;
 
 
-
-/* POST CLASSES
------------------------------------------------- */
+/*	-----------------------------------------------------------------------------------------------
+	FILTER POST_CLASS
+--------------------------------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'mcluhan_post_classes' ) ) {
 	function mcluhan_post_classes( $classes ) {
@@ -163,15 +164,18 @@ if ( ! function_exists( 'mcluhan_post_classes' ) ) {
 		// Class indicating presence/lack of post thumbnail
 		$classes[] = ( has_post_thumbnail() ? 'has-thumbnail' : 'missing-thumbnail' );
 
+		// Class indicating lack of title
+		if ( ! get_the_title() ) $classes[] = 'no-title';
+
 		return $classes;
 	}
 }
 add_action( 'post_class', 'mcluhan_post_classes' );
 
 
-
-/* BODY CLASSES
------------------------------------------------- */
+/*	-----------------------------------------------------------------------------------------------
+	FILTER BODY_CLASS
+--------------------------------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'mcluhan_body_classes' ) ) {
 	function mcluhan_body_classes( $classes ) {
@@ -217,9 +221,9 @@ if ( ! function_exists( 'mcluhan_body_classes' ) ) {
 add_action( 'body_class', 'mcluhan_body_classes' );
 
 
-
-/* MODIFY HTML CLASS TO INDICATE JS
------------------------------------------------- */
+/*	-----------------------------------------------------------------------------------------------
+	NO-JS CLASS
+--------------------------------------------------------------------------------------------------- */
 
 if ( ! function_exists( 'mcluhan_has_js' ) ) {
 	function mcluhan_has_js() {
@@ -231,70 +235,10 @@ if ( ! function_exists( 'mcluhan_has_js' ) ) {
 add_action( 'wp_head', 'mcluhan_has_js' );
 
 
-
-/* ENQUEUE COMMENT-REPLY.JS
------------------------------------------------- */
-
-if ( ! function_exists( 'mcluhan_load_scripts' ) ) {
-	function mcluhan_load_scripts() {
-		if ( ( ! is_admin() ) && is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-			wp_enqueue_script( 'comment-reply' );
-		}
-	}
-}
-add_action( 'wp_enqueue_scripts', 'mcluhan_load_scripts' );
-
-
-/* GET AND OUTPUT ARCHIVE TYPE
------------------------------------------------- */
-
-/* GET THE TYPE */
-
-if ( ! function_exists( 'mcluhan_get_archive_type' ) ) {
-	function mcluhan_get_archive_type() {
-		if ( is_category() ) {
-			$type = __( 'Category', 'mcluhan' );
-		} elseif ( is_tag() ) {
-			$type = __( 'Tag', 'mcluhan' );
-		} elseif ( is_author() ) {
-			$type = __( 'Author', 'mcluhan' );
-		} elseif ( is_year() ) {
-			$type = __( 'Year', 'mcluhan' );
-		} elseif ( is_month() ) {
-			$type = __( 'Month', 'mcluhan' );
-		} elseif ( is_day() ) {
-			$type = __( 'Date', 'mcluhan' );
-		} elseif ( is_post_type_archive() ) {
-			$type = __( 'Post Type', 'mcluhan' );
-		} elseif ( is_tax() ) {
-			$term = get_queried_object();
-			$taxonomy = $term->taxonomy;
-			$taxonomy_labels = get_taxonomy_labels( get_taxonomy( $taxonomy ) );
-			$type = $taxonomy_labels->name;
-		} else {
-			$type = __( 'Archives', 'mcluhan' );
-		}
-
-		return $type;
-	}
-}
-
-/* OUTPUT THE TYPE */
-
-if ( ! function_exists( 'mcluhan_the_archive_type' ) ) {
-	function mcluhan_the_archive_type() {
-		$type = mcluhan_get_archive_type();
-
-		echo $type;
-	}
-}
-
-
-
-/* ---------------------------------------------------------------------------------------------
-   AJAX PAGINATION
-   This function is called to load the next set of posts
-   --------------------------------------------------------------------------------------------- */
+/*	-----------------------------------------------------------------------------------------------
+	AJAX SEARCH RESULTS
+	This function is called to load ajax search results on mobile.
+--------------------------------------------------------------------------------------------------- */
 
 
 if ( ! function_exists( 'mcluhan_ajax_results' ) ) {
@@ -360,14 +304,66 @@ add_action( 'wp_ajax_nopriv_ajax_pagination', 'mcluhan_ajax_results' );
 add_action( 'wp_ajax_ajax_pagination', 'mcluhan_ajax_results' );
 
 
+/*	-----------------------------------------------------------------------------------------------
+	GET AND OUTPUT ARCHIVE TYPE
+--------------------------------------------------------------------------------------------------- */
+
+/* GET THE TYPE */
+
+if ( ! function_exists( 'mcluhan_get_archive_type' ) ) {
+	function mcluhan_get_archive_type() {
+		if ( is_category() ) {
+			$type = __( 'Category', 'mcluhan' );
+		} elseif ( is_tag() ) {
+			$type = __( 'Tag', 'mcluhan' );
+		} elseif ( is_author() ) {
+			$type = __( 'Author', 'mcluhan' );
+		} elseif ( is_year() ) {
+			$type = __( 'Year', 'mcluhan' );
+		} elseif ( is_month() ) {
+			$type = __( 'Month', 'mcluhan' );
+		} elseif ( is_day() ) {
+			$type = __( 'Date', 'mcluhan' );
+		} elseif ( is_post_type_archive() ) {
+			$type = __( 'Post Type', 'mcluhan' );
+		} elseif ( is_tax() ) {
+			$term = get_queried_object();
+			$taxonomy = $term->taxonomy;
+			$taxonomy_labels = get_taxonomy_labels( get_taxonomy( $taxonomy ) );
+			$type = $taxonomy_labels->name;
+		} else if ( is_search() ) {
+			$type = __( 'Search Results', 'mcluhan' );
+		} else if ( is_home() && get_theme_mod( 'mcluhan_home_title' ) ) {
+			$type = __( 'Introduction', 'mcluhan' );
+		} else {
+			$type = __( 'Archives', 'mcluhan' );
+		}
+
+		return $type;
+	}
+}
+
+/* OUTPUT THE TYPE */
+
+if ( ! function_exists( 'mcluhan_the_archive_type' ) ) {
+	function mcluhan_the_archive_type() {
+		$type = mcluhan_get_archive_type();
+
+		echo $type;
+	}
+}
 
 
+/*	-----------------------------------------------------------------------------------------------
+	FILTER ARCHIVE TITLE
 
-/* REMOVE PREFIX BEFORE ARCHIVE TITLES
------------------------------------------------- */
+	@param	$title string		The initial title.
+--------------------------------------------------------------------------------------------------- */
 
-if ( ! function_exists( 'mcluhan_remove_archive_title_prefix' ) ) {
+if ( ! function_exists( 'mcluhan_remove_archive_title_prefix' ) ) :
 	function mcluhan_remove_archive_title_prefix( $title ) {
+
+		// A duplicate of the core archive title conditional, but without the prefix.
 		if ( is_category() ) {
 			$title = single_cat_title( '', false );
 		} elseif ( is_tag() ) {
@@ -406,21 +402,78 @@ if ( ! function_exists( 'mcluhan_remove_archive_title_prefix' ) ) {
 			$title = single_term_title( '', false );
 		} else {
 			$title = __( 'Archives', 'mcluhan' );
-		} // End if().
+		}
+
+		// Custom archive title handling.
+
+		// On the home page, show the home title, if one is set.
+		if ( is_home() && get_theme_mod( 'mcluhan_home_title' ) ) {
+			$title = get_theme_mod( 'mcluhan_home_title' );
+
+		// On search, show the search query.
+		} else if ( is_search() ) {
+			$title = '&ldquo;' . get_search_query() . '&rdquo;';
+		}
 
 		return $title;
 
 	}
-} // End if().
-add_filter( 'get_the_archive_title', 'mcluhan_remove_archive_title_prefix' );
+	add_filter( 'get_the_archive_title', 'mcluhan_remove_archive_title_prefix' );
+endif;
 
 
+/*	-----------------------------------------------------------------------------------------------
+	FILTER ARCHIVE DESCRIPTION
 
-/* CUSTOM COMMENT OUTPUT
------------------------------------------------- */
-if ( ! function_exists( 'mcluhan_comment' ) ) {
+	@param	$description string		The initial description.
+--------------------------------------------------------------------------------------------------- */
 
+if ( ! function_exists( 'mcluhan_filter_archive_description' ) ) :
+	function mcluhan_filter_archive_description( $description ) {
+		
+		// On search, show a string describing the results of the search.
+		if ( is_search() ) {
+			global $wp_query;
+			if ( $wp_query->found_posts ) {
+				/* Translators: %s = Number of results */
+				$description = sprintf( _x( 'We found %s matching your search query.', 'Translators: %s = the number of search results', 'mcluhan' ), $wp_query->found_posts . ' ' . ( 1 == $wp_query->found_posts ? __( 'result', 'mcluhan' ) : __( 'results', 'mcluhan' ) ) );
+			} else {
+				/* Translators: %s = the search query */
+				$description = sprintf( _x( 'We could not find any results for the search query "%s". You can try again through the form below.', 'Translators: %s = the search query', 'mcluhan' ), get_search_query() );
+			}
+		}
+
+		return $description;
+
+	}
+	add_filter( 'get_the_archive_description', 'mcluhan_filter_archive_description' );
+endif;
+
+
+/*	-----------------------------------------------------------------------------------------------
+	PRE_GET_POSTS
+--------------------------------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'mcluhan_sort_search_posts_by_date' ) ) {
+	function mcluhan_sort_search_posts_by_date( $query ) {
+
+		// In search, order results by date
+		if ( ! is_admin() && $query->is_main_query() && $query->is_search() ) {
+			$query->set( 'orderby', 'date' );
+		}
+
+	}
+}
+add_action( 'pre_get_posts', 'mcluhan_sort_search_posts_by_date' );
+
+
+/*	-----------------------------------------------------------------------------------------------
+	CUSTOM COMMENT OUTPUT
+--------------------------------------------------------------------------------------------------- */
+
+if ( ! function_exists( 'mcluhan_comment' ) ) :
 	function mcluhan_comment( $comment, $args, $depth ) {
+
 		switch ( $comment->comment_type ) :
 			case 'pingback' :
 			case 'trackback' :
@@ -478,13 +531,9 @@ if ( ! function_exists( 'mcluhan_comment' ) ) {
 						</div><!-- .comment-content -->
 
 						<div class="comment-actions">
-
 							<?php if ( '0' == $comment->comment_approved ) : ?>
-
 								<p class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.', 'mcluhan' ); ?></p>
-
 							<?php endif; ?>
-
 						</div><!-- .comment-actions -->
 
 					</div><!-- .comment -->
@@ -494,14 +543,14 @@ if ( ! function_exists( 'mcluhan_comment' ) ) {
 		endswitch;
 
 	}
-} // End if().
+endif; // End if().
 
 
+/*	-----------------------------------------------------------------------------------------------
+	ADMIN NOTICES
+--------------------------------------------------------------------------------------------------- */
 
-/* ADMIN NOTICES
------------------------------------------------- */
-
-if ( ! function_exists( 'mcluhan_admin_notices' ) ) {
+if ( ! function_exists( 'mcluhan_admin_notices' ) ) :
 	function mcluhan_admin_notices() {
 
 		// Show notice about posts per page on theme activation, if the setting isn't set already
@@ -516,220 +565,22 @@ if ( ! function_exists( 'mcluhan_admin_notices' ) ) {
 		endif;
 
 	}
-} // End if().
-add_action( 'mcluhan_admin_notices', 'showAdminMessages' );
-
-
-
-/* CUSTOMIZER SETTINGS
------------------------------------------------- */
-
-class McLuhan_Customize {
-
-	public static function mcluhan_register( $wp_customize ) {
-
-		// Add our Customizer section
-		$wp_customize->add_section( 'mcluhan_options', array(
-			'capability' 	=> 'edit_theme_options',
-			'description' 	=> __( 'Customize the theme settings for McLuhan.', 'mcluhan' ),
-			'title' 		=> __( 'Theme Options', 'mcluhan' ),
-			'priority' 		=> 35,
-		) );
-
-		// Custom accent color
-		$wp_customize->add_setting( 'mcluhan_accent_color', array(
-			'default' 			=> '#121212',
-			'transport' 		=> 'postMessage',
-			'type' 				=> 'theme_mod',
-			'sanitize_callback' => 'sanitize_hex_color',
-		) );
-
-		$wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'mcluhan_accent_color', array(
-			'description' 	=> __( 'Set the background color used for the sidebar on desktop, and the header on tablet and mobile.', 'mcluhan' ),
-			'label' 		=> __( 'Sidebar background', 'mcluhan' ),
-			'section' 		=> 'colors',
-			'settings' 		=> 'mcluhan_accent_color',
-			'priority' 		=> 10,
-		) ) );
-
-		// Dark sidebar text
-		$wp_customize->add_setting( 'mcluhan_dark_sidebar_text', array(
-			'capability' 		=> 'edit_theme_options',
-			'sanitize_callback' => 'mcluhan_sanitize_checkbox',
-			'transport'			=> 'postMessage',
-		) );
-
-		$wp_customize->add_control( 'mcluhan_dark_sidebar_text', array(
-			'description' 	=> __( 'Check this if you have set a light background color for the sidebar/mobile header.', 'mcluhan' ),
-			'label' 		=> __( 'Dark text in sidebar', 'mcluhan' ),
-			'section' 		=> 'colors',
-			'type' 			=> 'checkbox',
-			'priority' 		=> 15,
-		) );
-
-		// Set the home page title
-		$wp_customize->add_setting( 'mcluhan_home_title', array(
-			'capability' 		=> 'edit_theme_options',
-			'sanitize_callback' => 'sanitize_textarea_field',
-			'transport'			=> 'postMessage',
-		) );
-
-		$wp_customize->add_control( 'mcluhan_home_title', array(
-			'description' 	=> __( 'The title you want shown on the page that displays your latest posts.', 'mcluhan' ),
-			'label' 		=> __( 'Front Page Title', 'mcluhan' ),
-			'type' 			=> 'textarea',
-			'section' 		=> 'mcluhan_options',
-		) );
-
-		// Hide social
-		$wp_customize->add_setting( 'mcluhan_hide_social', array(
-			'capability' 		=> 'edit_theme_options',
-			'sanitize_callback' => 'mcluhan_sanitize_checkbox',
-			'transport'			=> 'postMessage',
-		) );
-
-		$wp_customize->add_control( 'mcluhan_hide_social', array(
-			'type' 			=> 'checkbox',
-			'section' 		=> 'mcluhan_options',
-			'label' 		=> __( 'Hide social buttons', 'mcluhan' ),
-			'description' 	=> __( 'As default, the social section and a search toggle, even if a menu has not been set for the social section.', 'mcluhan' ),
-		) );
-
-		// Decide order of month + day in post previews
-		$wp_customize->add_setting( 'mcluhan_preview_date_format', array(
-			'capability' 		=> 'edit_theme_options',
-			'default' 			=> 'month-day',
-			'sanitize_callback' => 'mcluhan_sanitize_radio',
-		) );
-
-		$wp_customize->add_control( 'mcluhan_preview_date_format', array(
-			'type' 			=> 'radio',
-			'section' 		=> 'mcluhan_options',
-			'label' 		=> __( 'Archive Date Format', 'mcluhan' ),
-			'description' 	=> __( 'Choose whether post previews should display the date with month or day of month first.', 'mcluhan' ),
-			'choices' 		=> array(
-				'month-day' 	=> __( 'Month first (Jan 1)', 'mcluhan' ),
-				'day-month' 	=> __( 'Day of month first (1 Jan)', 'mcluhan' ),
-			),
-		) );
-
-		// Lowercase calendar month
-		$wp_customize->add_setting( 'mcluhan_preview_date_lowercase', array(
-			'capability' 		=> 'edit_theme_options',
-			'sanitize_callback' => 'mcluhan_sanitize_checkbox',
-			'transport'			=> 'postMessage',
-		) );
-
-		$wp_customize->add_control( 'mcluhan_preview_date_lowercase', array(
-			'label' 		=> __( 'Show the month name in lowercase', 'mcluhan' ),
-			'section' 		=> 'mcluhan_options',
-			'type' 			=> 'checkbox',
-			'priority' 		=> 15,
-		) );
-
-		// Make built-in controls use live JS preview
-		$wp_customize->get_setting( 'blogname' )->transport = 'postMessage';
-		$wp_customize->get_setting( 'background_color' )->transport = 'postMessage';
-
-		// SANITATION
-
-		// Sanitize boolean for checkbox
-		function mcluhan_sanitize_checkbox( $checked ) {
-			return ( ( isset( $checked ) && true == $checked ) ? true : false );
-		}
-
-		// Sanitize radio buttons
-		function mcluhan_sanitize_radio( $input, $setting ) {
-
-			// Ensure input is a slug.
-			$input = sanitize_key( $input );
-
-			// Get list of choices from the control associated with the setting.
-			$choices = $setting->manager->get_control( $setting->id )->choices;
-
-			// If the input is a valid key, return it; otherwise, return the default.
-			return ( array_key_exists( $input, $choices ) ? $input : $setting->default );
-		}
-
-	}
-
-	// Output custom CSS in the header
-	public static function mcluhan_header_output() {
-		?>
-
-		<!-- Customizer CSS -->
-
-		<style type="text/css">
-
-			<?php
-
-			self::mcluhan_generate_css( 'body .site-header', 'background-color', 'mcluhan_accent_color' );
-			self::mcluhan_generate_css( '.social-menu.desktop', 'background-color', 'mcluhan_accent_color' );
-			self::mcluhan_generate_css( '.social-menu a:hover', 'color', 'mcluhan_accent_color' );
-			self::mcluhan_generate_css( '.social-menu a.active', 'color', 'mcluhan_accent_color' );
-			self::mcluhan_generate_css( '.mobile-menu-wrapper', 'background-color', 'mcluhan_accent_color' );
-			self::mcluhan_generate_css( '.social-menu.mobile', 'background-color', 'mcluhan_accent_color' );
-			self::mcluhan_generate_css( '.mobile-search.active', 'background-color', 'mcluhan_accent_color' );
-
-			?>
-
-		</style>
-
-		<!-- /Customizer CSS -->
-
-		<?php
-	}
-
-	// Function for generating the custom CSS
-	public static function mcluhan_generate_css( $selector, $style, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
-
-		$return = '';
-
-		$mod = esc_attr( get_theme_mod( $mod_name ) );
-
-		if ( ! empty( $mod ) ) {
-
-			$return = sprintf( '%s { %s:%s; }', $selector, $style, $prefix . $mod . $postfix );
-
-			if ( $echo ) {
-				echo $return;
-			}
-		}
-
-		return $return;
-
-	}
-
-	// Initiate the live preview JS
-	public static function mcluhan_live_preview() {
-		wp_enqueue_script( 'mcluhan-themecustomizer', get_template_directory_uri() . '/assets/js/theme-customizer.js', array( 'jquery', 'customize-preview' ), '', true );
-	}
-	
-}
-
-// Output custom CSS to live site
-add_action( 'wp_head' , array( 'McLuhan_Customize', 'mcluhan_header_output' ) );
-
-// Setup the Theme Customizer settings and controls
-add_action( 'customize_register', array( 'McLuhan_Customize', 'mcluhan_register' ) );
-
-// Enqueue live preview javascript in Theme Customizer admin screen
-add_action( 'customize_preview_init', array( 'McLuhan_Customize', 'mcluhan_live_preview' ) );
+	add_action( 'mcluhan_admin_notices', 'showAdminMessages' );
+endif;
 
 
 /* ---------------------------------------------------------------------------------------------
-   SPECIFY GUTENBERG SUPPORT
+   SPECIFY BLOCK EDITOR SUPPORT
 ------------------------------------------------------------------------------------------------ */
 
+if ( ! function_exists( 'mcluhan_add_block_editor_features' ) ) :
+	function mcluhan_add_block_editor_features() {
 
-if ( ! function_exists( 'mcluhan_add_gutenberg_features' ) ) :
-	function mcluhan_add_gutenberg_features() {
-
-		/* Gutenberg Features --------------------------------------- */
+		/* Block Editor Features ------------- */
 
 		add_theme_support( 'align-wide' );
 
-		/* Gutenberg Palette --------------------------------------- */
+		/* Block Editor Palette -------------- */
 
 		add_theme_support( 'editor-color-palette', array(
 			array(
@@ -759,7 +610,7 @@ if ( ! function_exists( 'mcluhan_add_gutenberg_features' ) ) :
 			),
 		) );
 
-		/* Gutenberg Font Sizes --------------------------------------- */
+		/* Block Editor Font Sizes ----------- */
 
 		add_theme_support( 'editor-font-sizes', array(
 			array(
@@ -769,10 +620,10 @@ if ( ! function_exists( 'mcluhan_add_gutenberg_features' ) ) :
 				'slug' 		=> 'small',
 			),
 			array(
-				'name' 		=> _x( 'Regular', 'Name of the regular font size in Gutenberg', 'mcluhan' ),
-				'shortName' => _x( 'M', 'Short name of the regular font size in the Gutenberg editor.', 'mcluhan' ),
+				'name' 		=> _x( 'Normal', 'Name of the regular font size in Gutenberg', 'mcluhan' ),
+				'shortName' => _x( 'N', 'Short name of the regular font size in the Gutenberg editor.', 'mcluhan' ),
 				'size' 		=> 18,
-				'slug' 		=> 'regular',
+				'slug' 		=> 'normal',
 			),
 			array(
 				'name' 		=> _x( 'Large', 'Name of the large font size in Gutenberg', 'mcluhan' ),
@@ -789,19 +640,19 @@ if ( ! function_exists( 'mcluhan_add_gutenberg_features' ) ) :
 		) );
 
 	}
-	add_action( 'after_setup_theme', 'mcluhan_add_gutenberg_features' );
+	add_action( 'after_setup_theme', 'mcluhan_add_block_editor_features' );
 endif;
 
 
 /* ---------------------------------------------------------------------------------------------
-   GUTENBERG EDITOR STYLES
+   BLOCK EDITOR STYLES
    --------------------------------------------------------------------------------------------- */
-
 
 if ( ! function_exists( 'mcluhan_block_editor_styles' ) ) :
 	function mcluhan_block_editor_styles() {
 
 		$dependencies = array();
+		$theme_version = wp_get_theme( 'mcluhan' )->get( 'Version' );
 
 		/**
 		 * Translators: If there are characters in your language that are not
@@ -819,7 +670,7 @@ if ( ! function_exists( 'mcluhan_block_editor_styles' ) ) :
 		}
 
 		// Enqueue the editor styles
-		wp_enqueue_style( 'mcluhan-block-editor-styles', get_theme_file_uri( '/mcluhan-gutenberg-editor-style.css' ), $dependencies, '1.0', 'all' );
+		wp_enqueue_style( 'mcluhan-block-editor-styles', get_theme_file_uri( '/assets/css/mcluhan-block-editor-styles.css' ), $dependencies, $theme_version, 'all' );
 
 	}
 	add_action( 'enqueue_block_editor_assets', 'mcluhan_block_editor_styles', 1 );

@@ -1,28 +1,6 @@
-<?php
+<li <?php post_class( 'post-preview' ); ?> id="post-<?php the_ID(); ?>">
 
-$extra_classes = '';
-
-if ( ! get_the_title() ) {
-	$extra_classes = ' no-title';
-}
-
-?>
-
-<li <?php post_class( 'post-preview' . $extra_classes ); ?> id="post-<?php the_ID(); ?>">
-
-	<?php
-
-	$title_args = array();
-
-	if ( is_sticky() ) {
-		$title_args = array(
-			'before' => __( 'Sticky post:', 'mcluhan' ) . ' ',
-		);
-	}
-
-	?>
-
-	<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute( $title_args ); ?>">
+	<a href="<?php the_permalink(); ?>">
 		<?php
 		$sticky = is_sticky() ? '<div class="sticky-arrow"></div>'  : '';
 		the_title( '<h2 class="title">' . $sticky . '<span>', '</span></h2>' );

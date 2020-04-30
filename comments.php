@@ -27,12 +27,4 @@
 
 	<?php comment_form( 'comment_notes_before=&comment_notes_after=' ); ?>
 
-<?php elseif ( $comments ) : ?>
-
-	<div id="respond" class="comment-respond">
-
-		<p class="closed"><?php _e( 'Comments closed', 'mcluhan' ); ?></p>
-
-	</div><!-- #respond -->
-
 <?php endif; ?>

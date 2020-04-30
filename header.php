@@ -25,19 +25,13 @@
 
 		<header class="site-header group">
 
-			<?php if ( is_singular() ) : ?>
+			<?php $site_title_elem = is_front_page() || ( is_home() && get_option( 'show_on_front' ) == 'posts' ) ? 'h1' : 'p'; ?>
 
-				<p class="site-title"><a href="<?php echo esc_url( home_url() ); ?>" class="site-name"><?php bloginfo( 'name' ); ?></a></p>
-
-			<?php else : ?>
-
-				<h1 class="site-title"><a href="<?php echo esc_url( home_url() ); ?>" class="site-name"><?php bloginfo( 'name' ); ?></a></h1>
-
-			<?php endif; ?>
+			<<?php echo $site_title_elem; ?> class="site-title"><a href="<?php echo esc_url( home_url() ); ?>" class="site-name"><?php bloginfo( 'name' ); ?></a></<?php echo $site_title_elem; ?>>
 
 			<?php if ( get_bloginfo( 'description' ) ) : ?>
 
-				<p class="site-description"><?php bloginfo( 'description' ); ?></p>
+				<div class="site-description"><?php echo wpautop( get_bloginfo( 'description' ) ); ?></div>
 
 			<?php endif; ?>
 

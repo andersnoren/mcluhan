@@ -2,7 +2,7 @@
 Contributors: Anlino
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=anders%40andersnoren%2ese&lc=US&item_name=Free%20WordPress%20Themes%20from%20Anders%20Noren&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.4
-Tested up to: 5.2
+Tested up to: 5.4.1
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +71,40 @@ Source: http://fontawesome.io/
 
 
 == Changelog ==
+
+Version 2.0.0 (2020-04-30)
+-------------------------
+- Removed FontAwesome font files not needed to support modern browsers, reducing theme footprint.
+- CSS: Updated targeting of the block editor colors and font sizes to work outside of the entry content.
+- CSS: Added base margins for blocks, including the new social links and buttons block added in WordPress 5.4.
+- CSS: Updated Firefox font antialiasing to match that of Safari and Chrome.
+- CSS: Removed removal of outline from links and inputs, improving keyboard navigation.
+- CSS: Combined the Archive Pagination and Archive sections.
+- CSS: Added a new section for Element Base, including global styling previously in the Entry Content section.
+- CSS: Added a new section for Blocks, including block styling previously in the Entry Content section.
+- CSS: Updated the TOC to match the new CSS structure.
+- CSS: Added more elements to the base input styles.
+- CSS: Updated the CSS reset to make elements inherit styles instead of reset them.
+- CSS: Updated list styles and heading styles to be global rather than entry content specific, and updated other styles accordingly.
+- CSS: Removed vendor prefixes that are no longer needed.
+- CSS: Updated base link styles to be less specific, and underlined by default.
+- CSS: Added clearfix to the entry content.
+- CSS: Adjusted blockquote styles.
+- CSS: General cleanup (indentation, spacing, formatting, etc).
+- Comments: Removed the "Comments are closed" message.
+- Meta: Updated "Tested up to" to 5.4.1.
+- Moved the Mcluhan_Customize class to its own file, made the class pluggable, and removed prefixes from class functions.
+- Moved the "no-title" post-preview class from `content.php` to the `post_classes` function.
+- Removed all occurances of the title attribute on `a` elements.
+- Header: Updated the logic determining when to output the site title as a H1 heading (only on the front page).
+- Archive: Updated the logic determining when to output the page title as a H1 heading (only when not on the front page).
+- Restructured and simplified the archive header, and moved conditionals for archive title, description and type to corresponding functions.
+- Added theme version to enqueues.
+- Removed unneccessary `is_admin()` check from `wp_enqueue_scripts` function.
+- Combined the two functions hooking into `wp_enqueue_scripts` into one.
+- Block Editor: Renamed the "Regular" font size to "Normal", to match the expected naming in the block editor.
+- Moved the editor styles to `/assets/css/` and renamed them.
+- Added a missing `global $post` before use of `setup_postdata()` in `related-posts.php`.
 
 Version 1.20 (2019-07-19)
 -------------------------
