@@ -72,6 +72,10 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 2.0.1 (2020-05-04)
+-------------------------
+- Fixed the McLuhan header/sidebar being displayed on top of the WordPress admin bar (thanks, @adamkheckler).
+
 Version 2.0.0 (2020-04-30)
 -------------------------
 - Removed FontAwesome font files not needed to support modern browsers, reducing theme footprint.
