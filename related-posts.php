@@ -1,5 +1,7 @@
 <?php
 
+if ( get_theme_mod( 'mcluhan_hide_related_posts', false ) ) return;
+
 $related_post_ids = array();
 
 // Exclude sticky posts and the current post

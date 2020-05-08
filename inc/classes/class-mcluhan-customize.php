@@ -71,8 +71,22 @@ if ( ! class_exists( 'McLuhan_Customize' ) ) :
 			$wp_customize->add_control( 'mcluhan_hide_social', array(
 				'type' 			=> 'checkbox',
 				'section' 		=> 'mcluhan_options',
-				'label' 		=> __( 'Hide social buttons', 'mcluhan' ),
+				'label' 		=> __( 'Hide Social Buttons', 'mcluhan' ),
 				'description' 	=> __( 'As default, the social section and a search toggle, even if a menu has not been set for the social section.', 'mcluhan' ),
+			) );
+
+			// Hide related posts
+			$wp_customize->add_setting( 'mcluhan_hide_related_posts', array(
+				'capability' 		=> 'edit_theme_options',
+				'sanitize_callback' => 'mcluhan_sanitize_checkbox',
+				'transport'			=> 'postMessage',
+			) );
+
+			$wp_customize->add_control( 'mcluhan_hide_related_posts', array(
+				'type' 			=> 'checkbox',
+				'section' 		=> 'mcluhan_options',
+				'label' 		=> __( 'Hide Related Posts', 'mcluhan' ),
+				'description' 	=> __( 'Whether to hide the related posts section on single posts.', 'mcluhan' ),
 			) );
 
 			// Decide order of month + day in post previews
@@ -162,22 +176,13 @@ if ( ! class_exists( 'McLuhan_Customize' ) ) :
 
 		// Function for generating the custom CSS
 		public static function generate_css( $selector, $style, $mod_name, $prefix = '', $postfix = '', $echo = true ) {
-
 			$return = '';
-
 			$mod = esc_attr( get_theme_mod( $mod_name ) );
-
 			if ( ! empty( $mod ) ) {
-
 				$return = sprintf( '%s { %s:%s; }', $selector, $style, $prefix . $mod . $postfix );
-
-				if ( $echo ) {
-					echo $return;
-				}
+				echo $return;
 			}
-
 			return $return;
-
 		}
 
 		// Initiate the live preview JS

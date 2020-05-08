@@ -76,7 +76,7 @@
 
 					<ul class="social-menu-inner">
 
-						<li><a href="<?php echo esc_url( home_url( '?s=' ) ); ?>"></a></li>
+						<li class="social-search-wrapper"><a href="<?php echo esc_url( home_url( '?s=' ) ); ?>"></a></li>
 
 						<?php
 

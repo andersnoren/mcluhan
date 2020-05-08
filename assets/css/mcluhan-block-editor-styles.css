@@ -31,6 +31,10 @@
     max-width: 590px;
 }
 
+.block-editor-default-block-appender textarea.block-editor-default-block-appender__content {
+	font: inherit;
+}
+
 .editor-styles-wrapper .editor-block-list__block[data-align="full"] {
     max-width: none;
 }

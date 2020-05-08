@@ -72,6 +72,13 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 2.0.2 (2020-05-08)
+-------------------------
+- Made the "Full Width Template" avaialable to posts as well as pages.
+- Fixed the default block appender in the block editor having the wrong font family.
+- Added a Customizer option for hiding the "Related Posts" section on single posts.
+- Updated Font Awesome, stripped out unused FontAwesome styles from `font-awesome.css`, and added support for a lot more icons.
+
 Version 2.0.1 (2020-05-04)
 -------------------------
 - Fixed the McLuhan header/sidebar being displayed on top of the WordPress admin bar (thanks, @adamkheckler).
