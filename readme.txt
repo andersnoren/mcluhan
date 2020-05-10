@@ -72,9 +72,13 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 2.0.3 (2020-05-10)
+-------------------------
+- If a posts page is set, and a "Front Page Title" hasn't been set, use the title of the posts page as the archive title when the posts page is displayed.
+
 Version 2.0.2 (2020-05-08)
 -------------------------
-- Made the "Full Width Template" avaialable to posts as well as pages.
+- Made the "Full Width Template" available to posts as well as pages.
 - Fixed the default block appender in the block editor having the wrong font family.
 - Added a Customizer option for hiding the "Related Posts" section on single posts.
 - Updated Font Awesome, stripped out unused FontAwesome styles from `font-awesome.css`, and added support for a lot more icons.

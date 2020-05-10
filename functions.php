@@ -400,19 +400,18 @@ if ( ! function_exists( 'mcluhan_remove_archive_title_prefix' ) ) :
 			$title = post_type_archive_title( '', false );
 		} elseif ( is_tax() ) {
 			$title = single_term_title( '', false );
+		} elseif ( is_home() ) {
+			if ( get_theme_mod( 'mcluhan_home_title' ) ) {
+				$title = get_theme_mod( 'mcluhan_home_title' );
+			} elseif ( get_option( 'page_for_posts' ) ) {
+				$title = get_the_title( get_option( 'page_for_posts' ) );
+			} else {
+				$title = '';
+			}
+		} elseif ( is_search() ) {
+			$title = '&ldquo;' . get_search_query() . '&rdquo;';
 		} else {
 			$title = __( 'Archives', 'mcluhan' );
-		}
-
-		// Custom archive title handling.
-
-		// On the home page, show the home title, if one is set.
-		if ( is_home() && get_theme_mod( 'mcluhan_home_title' ) ) {
-			$title = get_theme_mod( 'mcluhan_home_title' );
-
-		// On search, show the search query.
-		} else if ( is_search() ) {
-			$title = '&ldquo;' . get_search_query() . '&rdquo;';
 		}
 
 		return $title;
