@@ -114,11 +114,12 @@
 				} else {
 					wp_list_pages( $fallback_args );
 				}
-				?>
-				<li class="toggle-mobile-search-wrapper"><a href="#" class="toggle-mobile-search"><?php _e( 'Search', 'mcluhan' ); ?></a></li>
-			</ul>
+				if ( ! get_theme_mod( 'mcluhan_hide_social', false ) ) : ?>
+					<li class="toggle-mobile-search-wrapper"><a href="#" class="toggle-mobile-search"><?php _e( 'Search', 'mcluhan' ); ?></a></li>
+				<?php endif; ?>
+			</ul><!-- .main-menu.mobile -->
 
-			<?php if ( has_nav_menu( 'social-menu' ) && ( ! get_theme_mod( 'mcluhan_hide_social' ) || is_customize_preview() ) ) : ?>
+			<?php if ( has_nav_menu( 'social-menu' ) && ( ! get_theme_mod( 'mcluhan_hide_social', false ) || is_customize_preview() ) ) : ?>
 
 				<div class="social-menu mobile">
 
@@ -134,24 +135,28 @@
 
 		</div><!-- .mobile-menu-wrapper -->
 
-		<div class="mobile-search">
+		<?php if ( ! get_theme_mod( 'mcluhan_hide_social', false ) ) : ?>
 
-			<div class="untoggle-mobile-search"></div>
+			<div class="mobile-search">
 
-			<?php get_search_form(); ?>
+				<div class="untoggle-mobile-search"></div>
 
-			<div class="mobile-results">
+				<?php get_search_form(); ?>
 
-				<div class="results-wrapper"></div>
+				<div class="mobile-results">
 
-			</div>
+					<div class="results-wrapper"></div>
 
-		</div><!-- .mobile-search -->
+				</div>
 
-		<div class="search-overlay">
+			</div><!-- .mobile-search -->
 
-			<?php get_search_form(); ?>
+			<div class="search-overlay">
 
-		</div><!-- .search-overlay -->
+				<?php get_search_form(); ?>
+
+			</div><!-- .search-overlay -->
+
+		<?php endif; ?>
 
 		<main class="site-content" id="site-content">

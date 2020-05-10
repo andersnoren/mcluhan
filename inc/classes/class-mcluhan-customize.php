@@ -72,7 +72,7 @@ if ( ! class_exists( 'McLuhan_Customize' ) ) :
 				'type' 			=> 'checkbox',
 				'section' 		=> 'mcluhan_options',
 				'label' 		=> __( 'Hide Social Buttons', 'mcluhan' ),
-				'description' 	=> __( 'As default, the social section and a search toggle, even if a menu has not been set for the social section.', 'mcluhan' ),
+				'description' 	=> __( 'Whether to hide the social buttons and the search overlay button.', 'mcluhan' ),
 			) );
 
 			// Hide related posts
