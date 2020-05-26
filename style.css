@@ -2,7 +2,7 @@
 
 	Theme Name: McLuhan
     Text Domain: mcluhan
-	Version: 2.0.4
+	Version: 2.0.5
 	Description: McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, Block Editor/Gutenberg support, a responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template. Demo: https://www.andersnoren.se/themes/mcluhan/
 	Tags: two-columns, left-sidebar, custom-menu, custom-colors, editor-style, featured-images, full-width-template, sticky-post, threaded-comments, theme-options, blog, translation-ready, block-styles, wide-blocks
 	Author: Anders Norén
@@ -10,6 +10,8 @@
 	License: GNU General Public License version 2.0
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	Theme URI: https://www.andersnoren.se/teman/mcluhan-wordpress-theme/
+	Requires PHP: 5.4
+	Tested up to: 5.4.1
 	
 	All files, unless otherwise stated, are released under the GNU General Public License
 	version 2.0 (http://www.gnu.org/licenses/gpl-2.0.html)
@@ -250,6 +252,40 @@ a {
 .bg-image {
 	background: no-repeat center;
 	background-size: cover;
+}
+
+/* Animations -------------------------------- */
+
+@keyframes show {
+	from {
+		opacity: 0;
+		transform: translateY(10px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes hide {
+	from {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateY(-10px);
+	}
+}
+
+@keyframes foldOutLeft {
+	from { transform: rotate(0); }
+	to { transform: rotate(30deg); }
+}
+
+@keyframes foldOutRight {
+	from { transform: rotate(0); }
+	to { transform: rotate(-30deg); }
 }
 
 
@@ -2110,7 +2146,6 @@ input.search-field::-moz-placeholder { color: #121212; }
 		left: 320px;
 	}
 
-
 }
 
 @media ( max-width: 1000px ) {
@@ -2317,30 +2352,8 @@ input.search-field::-moz-placeholder { color: #121212; }
 		transition: none;
 	}
 
-	@keyframes show {
-		from {
-			opacity: 0;
-			transform: translateY(10px);
-		}
-		to {
-			opacity: 1;
-			transform: translateY(0);
-		}
-	}
-
 	.mobile-search.hide {
 		animation: hide .3s ease-in 1;
-	}
-
-	@keyframes hide {
-		from {
-			opacity: 1;
-			transform: translateY(0);
-		}
-		to {
-			opacity: 0;
-			transform: translateY(-10px);
-		}
 	}
 
 	.untoggle-mobile-search {
@@ -2385,16 +2398,6 @@ input.search-field::-moz-placeholder { color: #121212; }
 	.mobile-search.active .untoggle-mobile-search:after {
 		animation: foldOutRight .2s .3s linear 1;
 		animation-fill-mode: both;
-	}
-
-	@keyframes foldOutLeft {
-		from { transform: rotate(0); }
-		to { transform: rotate(30deg); }
-	}
-
-	@keyframes foldOutRight {
-		from { transform: rotate(0); }
-		to { transform: rotate(-30deg); }
 	}
 
 	.mobile-search.active .untoggle-mobile-search:after {
@@ -2481,7 +2484,6 @@ input.search-field::-moz-placeholder { color: #121212; }
 		left: calc( 50% - 50vw + 10px );
 		width: calc( 100vw - 20px );
 	}
-
 
 }
 
@@ -2862,7 +2864,8 @@ input.search-field::-moz-placeholder { color: #121212; }
 	.entry-content .aligncenter,
 	.entry-content .alignwide,
 	.entry-content .alignfull {
-		margin: 30px auto;
+		margin-bottom: 30px;
+		margin-top: 30px;
 	}
 
 	/* Archive ------------------------------- */

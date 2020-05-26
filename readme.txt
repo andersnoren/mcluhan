@@ -3,6 +3,7 @@ Contributors: Anlino
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=anders%40andersnoren%2ese&lc=US&item_name=Free%20WordPress%20Themes%20from%20Anders%20Noren&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.4
 Tested up to: 5.4.1
+Requires PHP: 5.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
@@ -71,6 +72,14 @@ Source: http://fontawesome.io/
 
 
 == Changelog ==
+
+Version 2.0.5 (2020-05-26)
+-------------------------
+- Fixed alignfull issue on mobile.
+- Added "Requires PHP" to readme.txt.
+- Added "Requires PHP" and "Tested up to" header fields to style.css.
+- Updated the Viewport meta tag to be more permissive.
+- Moved the @keyframes from the media queries, since including them there caused Safari to ignore the media queries on resize (but not on reload). Thanks, @gotanygrapes!
 
 Version 2.0.4 (2020-05-10)
 -------------------------
