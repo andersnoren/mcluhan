@@ -73,6 +73,11 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 2.0.6 (2021-03-30)
+-------------------------
+- Fixed color issue with the buttons block (thanks, @kennethallen).
+- Fixed the outline buttons having different dimensions than regular buttons.
+
 Version 2.0.5 (2020-05-26)
 -------------------------
 - Fixed alignfull issue on mobile.

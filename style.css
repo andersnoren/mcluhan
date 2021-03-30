@@ -2,7 +2,7 @@
 
 	Theme Name: McLuhan
     Text Domain: mcluhan
-	Version: 2.0.5
+	Version: 2.0.6
 	Description: McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, Block Editor/Gutenberg support, a responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template. Demo: https://www.andersnoren.se/themes/mcluhan/
 	Tags: two-columns, left-sidebar, custom-menu, custom-colors, editor-style, featured-images, full-width-template, sticky-post, threaded-comments, theme-options, blog, translation-ready, block-styles, wide-blocks
 	Author: Anders Norén
@@ -427,9 +427,9 @@ input[type="submit"] {
 	transition: background-color .15s linear;
 }
 
-.wp-block-button__link,
-.wp-block-button__link:hover {
-	color: inherit;
+.is-style-outline > .wp-block-button__link,
+.wp-block-button__link.is-style-outline {
+	padding: 14px 22px 14px;
 }
 
 button:hover,
@@ -1504,10 +1504,24 @@ body.hide-social .social-menu {
 }
 
 /* Block: Button ----------------------------- */
+
+:root .wp-block-button__link {
+	border: none;
+}
+
 /* Block: Buttons ---------------------------- */
 
 .wp-block-buttons .wp-block-button {
 	margin-top: 0;
+}
+
+:root .wp-block-button__link:not(.is-style-outline),
+:root .wp-block-buttons:not(.is-style-outline) .wp-block-button:not(.is-style-outline) {
+	border: none;
+}
+
+:root .is-style-outline > .wp-block-button__link, :root .wp-block-button__link.is-style-outline {
+	border: 2px solid;
 }
 
 /* Block: Column ----------------------------- */
