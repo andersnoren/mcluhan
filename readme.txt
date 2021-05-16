@@ -2,7 +2,7 @@
 Contributors: Anlino
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=anders%40andersnoren%2ese&lc=US&item_name=Free%20WordPress%20Themes%20from%20Anders%20Noren&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.4
-Tested up to: 5.4.1
+Tested up to: 5.7.2
 Requires PHP: 5.4
 Stable tag: trunk
 License: GPLv2 or later
@@ -72,6 +72,11 @@ Source: http://fontawesome.io/
 
 
 == Changelog ==
+
+Version 2.0.7 (2021-05-16)
+-------------------------
+- Fixed the singular.php entry title opening with h1, and closing with h2 (thanks, @bianca205).
+- Updated "Tested up to" to 5.7.2.
 
 Version 2.0.6 (2021-03-30)
 -------------------------

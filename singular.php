@@ -23,7 +23,7 @@ if ( have_posts() ) :
 			<header class="entry-header section-inner">
 
 				<?php
-				the_title( '<h1 class="entry-title">', '</h2>' );
+				the_title( '<h1 class="entry-title">', '</h1>' );
 
 				// Make sure we have a custom excerpt
 				if ( has_excerpt() ) {
