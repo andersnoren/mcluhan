@@ -67,20 +67,8 @@ if ( ! function_exists( 'mcluhan_load_style' ) ) :
 		$dependencies = array();
 		$theme_version = wp_get_theme( 'mcluhan' )->get( 'Version' );
 
-		/**
-		 * Translators: If there are characters in your language that are not
-		 * supported by the theme fonts, translate this to 'off'. Do not translate
-		 * into your own language.
-		 */
-		$google_fonts = _x( 'on', 'Google Fonts: on or off', 'mcluhan' );
-
-		if ( 'off' !== $google_fonts ) {
-
-			// Register Google Fonts
-			wp_register_style( 'mcluhan-fonts', '//fonts.googleapis.com/css?family=Archivo:400,400i,600,600i,700,700i&amp;subset=latin-ext', false, 1.0, 'all' );
-			$dependencies[] = 'mcluhan-fonts';
-
-		}
+		wp_register_style( 'mcluhan-fonts', get_stylesheet_directory_uri() . '/assets/css/fonts.css' );
+		$dependencies[] = 'mcluhan-fonts';
 
 		wp_register_style( 'fontawesome', get_template_directory_uri() . '/assets/css/font-awesome.css', null );
 		$dependencies[] = 'fontawesome';
@@ -98,20 +86,7 @@ endif;
 if ( ! function_exists( 'mcluhan_add_editor_styles' ) ) :
 	function mcluhan_add_editor_styles() {
 
-		$editor_styles = array( 'assets/css/mcluhan-classic-editor-styles.css' );
-
-		/**
-		 * Translators: If there are characters in your language that are not
-		 * supported by the theme fonts, translate this to 'off'. Do not translate
-		 * into your own language.
-		 */
-		$google_fonts = _x( 'on', 'Google Fonts: on or off', 'mcluhan' );
-
-		if ( 'off' !== $google_fonts ) {
-			$editor_styles[] = '//fonts.googleapis.com/css?family=Archivo:400,400i,600,700,700i&amp;subset=latin-ext';
-		}
-
-		add_editor_style( $editor_styles );
+		add_editor_style( array( 'assets/css/mcluhan-classic-editor-styles.css', 'assets/css/fonts.css' ) );
 
 	}
 	add_action( 'init', 'mcluhan_add_editor_styles' );
@@ -557,7 +532,7 @@ if ( ! function_exists( 'mcluhan_admin_notices' ) ) :
 
 			<div class="notice notice-info is-dismissible">
 				<?php /* Translators: %1$1s = opening link to the demo site, %2$2s = closing link tag, %3$3s = link to the reading options, %4$4s = closing link tag */ ?>
-				<p><?php printf( _x( 'To make McLuhan display like the %1$1sdemo site%2$2s, with all posts listed on archive pages, you need to change the "Blog pages show at most" setting in %3$3sSettings > Reading%4$4s to a value exceeding the number of posts on your site.', 'Translators: %1$1s = opening link to the demo site, %2$2s = closing link tag, %3$3s = link to the reading options, %4$4s = closing link tag', 'mcluhan' ), '<a href="https://www.andersnoren.se/themes/mcluhan/">', '</a>', '<a href="' . admin_url( 'options-reading.php' ) . '">', '</a>' ); ?></p>
+				<p><?php printf( _x( 'To make McLuhan display like the %1$1sdemo site%2$2s, with all posts listed on archive pages, you need to change the "Blog pages show at most" setting in %3$3sSettings > Reading%4$4s to a value exceeding the number of posts on your site.', 'Translators: %1$1s = opening link to the demo site, %2$2s = closing link tag, %3$3s = link to the reading options, %4$4s = closing link tag', 'mcluhan' ), '<a href="https://andersnoren.se/themes/mcluhan/">', '</a>', '<a href="' . admin_url( 'options-reading.php' ) . '">', '</a>' ); ?></p>
 			</div>
 
 			<?php
@@ -650,29 +625,11 @@ endif;
 if ( ! function_exists( 'mcluhan_block_editor_styles' ) ) :
 	function mcluhan_block_editor_styles() {
 
-		$dependencies = array();
 		$theme_version = wp_get_theme( 'mcluhan' )->get( 'Version' );
 
-		/**
-		 * Translators: If there are characters in your language that are not
-		 * supported by the theme fonts, translate this to 'off'. Do not translate
-		 * into your own language.
-		 */
-		$google_fonts = _x( 'on', 'Google Fonts: on or off', 'mcluhan' );
-
-		if ( 'off' !== $google_fonts ) {
-
-			// Register Google Fonts
-			wp_register_style( 'mcluhan-block-editor-styles-font', '//fonts.googleapis.com/css?family=Archivo:400,400i,600,600i,700,700i&amp;subset=latin-ext', false, 1.0, 'all' );
-			$dependencies[] = 'mcluhan-block-editor-styles-font';
-
-		}
-
-		// Enqueue the editor styles
-		wp_enqueue_style( 'mcluhan-block-editor-styles', get_theme_file_uri( '/assets/css/mcluhan-block-editor-styles.css' ), $dependencies, $theme_version, 'all' );
+		wp_register_style( 'mcluhan-block-editor-styles-font', get_stylesheet_directory_uri() . '/assets/css/fonts.css' );
+		wp_enqueue_style( 'mcluhan-block-editor-styles', get_theme_file_uri( '/assets/css/mcluhan-block-editor-styles.css' ), array( 'mcluhan-block-editor-styles-font' ), $theme_version, 'all' );
 
 	}
 	add_action( 'enqueue_block_editor_assets', 'mcluhan_block_editor_styles', 1 );
 endif;
-
-?>
