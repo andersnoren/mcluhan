@@ -67,10 +67,10 @@ if ( ! function_exists( 'mcluhan_load_style' ) ) :
 		$dependencies = array();
 		$theme_version = wp_get_theme( 'mcluhan' )->get( 'Version' );
 
-		wp_register_style( 'mcluhan-fonts', get_stylesheet_directory_uri() . '/assets/css/fonts.css' );
+		wp_register_style( 'mcluhan-fonts', get_theme_file_uri( '/assets/css/fonts.css' ) );
 		$dependencies[] = 'mcluhan-fonts';
 
-		wp_register_style( 'fontawesome', get_template_directory_uri() . '/assets/css/font-awesome.css', null );
+		wp_register_style( 'fontawesome', get_theme_file_uri( '/assets/css/font-awesome.css' ) );
 		$dependencies[] = 'fontawesome';
 
 		wp_enqueue_style( 'mcluhan-style', get_template_directory_uri() . '/style.css', $dependencies, $theme_version );
@@ -627,7 +627,7 @@ if ( ! function_exists( 'mcluhan_block_editor_styles' ) ) :
 
 		$theme_version = wp_get_theme( 'mcluhan' )->get( 'Version' );
 
-		wp_register_style( 'mcluhan-block-editor-styles-font', get_stylesheet_directory_uri() . '/assets/css/fonts.css' );
+		wp_register_style( 'mcluhan-block-editor-styles-font', get_theme_file_uri( '/assets/css/fonts.css' ) );
 		wp_enqueue_style( 'mcluhan-block-editor-styles', get_theme_file_uri( '/assets/css/mcluhan-block-editor-styles.css' ), array( 'mcluhan-block-editor-styles-font' ), $theme_version, 'all' );
 
 	}

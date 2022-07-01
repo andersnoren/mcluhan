@@ -73,6 +73,10 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 2.1.1 (2022-07-01)
+-------------------------
+- Improved fonts.css enqueue for child themes.
+
 Version 2.1 (2022-06-29)
 -------------------------
 - Updated "Tested up to" to 6.0.
