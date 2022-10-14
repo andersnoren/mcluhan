@@ -2,7 +2,7 @@
 
 McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, Block Editor/Gutenberg support, a responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template.
 
-![McLuhan](https://github.com/andersnoren/mcluhan/blob/main/screenshot.png)
+![McLuhan](https://github.com/andersnoren/mcluhan/blob/master/screenshot.png)
 
 You can download the latest stable release of McLuhan [from WordPress.org](https://wordpress.org/themes/mcluhan/).
 
