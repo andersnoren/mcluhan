@@ -823,25 +823,37 @@ body.hide-social .social-menu {
 .social-menu a[href*="etsy.com"]::before { content: '\f2d7'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="facebook.com"]::before { content: '\f39e'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="flickr.com"]::before { content: '\f16e'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="fosstodon.org"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="github.com"]::before { content: '\f113'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="gitlab.com"]::before { content: '\f296'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="goodreads.com"]::before { content: '\f3a9'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="hachyderm.io"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="houzz"]::before { content: '\f27c'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="imdb.com"]::before { content: '\f2d8'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="infosec.exchange"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="instagram.com"]::before { content: '\f16d'; font-family: 'Font Awesome 5 Brands'; }
-.social-menu a[href*="kickstarter.com"]::before { content: '\f3bc'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="jsfiddle.net"]::before { content: '\f1cc'; font-family: 'Font Awesome 5 Brands'; }
-.social-menu a[href*="linkedin.com"]::before { content: '\f0e1'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="kickstarter.com"]::before { content: '\f3bc'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="last.fm"]::before { content: '\f202'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="linkedin.com"]::before { content: '\f0e1'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="mas.to"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="mastodon.cloud"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="mastodon.online"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="mastodon.social"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="mastodon.world"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="mastodon.xyz"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="medium.com"]::before { content: '\f3c7'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="meetup.com"]::before { content: '\f2e0'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="mixcloud.com"]::before { content: '\f289'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="mstdn.jp"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="mstdn.social"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="patreon.com"]::before { content: '\f3d9'; font-family: 'Font Awesome 5 Brands'; }
-.social-menu a[href*="pscp.tv"]::before { content: '\f3da'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="pinterest"]::before { content: '\f231'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="pixelfed.social"]::before { content: '\f4f6'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="play.google.com"]::before { content: '\f3ab'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="plus.google.com"]::before { content: '\f0d5'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="producthunt.com"]::before { content: '\f288'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="pscp.tv"]::before { content: '\f3da'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="quora.com"]::before { content: '\f2c4'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="reddit.com"]::before { content: '\f281'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="slack.com"]::before { content: '\f198'; font-family: 'Font Awesome 5 Brands'; }
@@ -850,11 +862,11 @@ body.hide-social .social-menu {
 .social-menu a[href*="tumblr.com"]::before { content: '\f173'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="twitch"]::before { content: '\f1e8'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="twitter.com"]::before { content: '\f099'; font-family: 'Font Awesome 5 Brands'; }
-.social-menu a[href*="vimeo.com"]::before { content: '\f27d'; font-family: 'Font Awesome 5 Brands'; }
-.social-menu a[href*="wordpress.org"]::before,
-.social-menu a[href*="wordpress.com"]::before { content: '\f411'; font-family: 'Font Awesome 5 Brands'; }
-.social-menu a[href*="youtube.com"]::before { content: '\f167'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="unsplash.com"]::before { content: '\f030'; font-family: 'Font Awesome 5'; }
+.social-menu a[href*="vimeo.com"]::before { content: '\f27d'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="wordpress.com"]::before { content: '\f411'; font-family: 'Font Awesome 5 Brands'; }
+.social-menu a[href*="wordpress.org"]::before,
+.social-menu a[href*="youtube.com"]::before { content: '\f167'; font-family: 'Font Awesome 5 Brands'; }
 
 .social-menu a[href*="?s="]::before { content: '\f002'; top: calc( 50% - 10px ); }
 
