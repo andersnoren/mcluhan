@@ -1983,6 +1983,52 @@ p.has-drop-cap:not(:focus):first-letter {
 }
 
 
+/* Categories & Tags Template ---------------------------- */
+
+.tags_grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-items: stretch;
+  column-gap: 15px;
+  row-gap: 10px;
+}
+
+.tags_grid h2 {
+  grid-column: 1/ -1;
+}
+
+.tags_grid .tag-cloud-link {
+  border-bottom: 2px solid #000;
+  text-decoration: none;
+  color: #000;
+  overflow: hidden;
+  line-height: 40px;
+}
+
+.tags_grid + .tags_grid {
+  margin-top: 40px;
+}
+
+.tags_grid .tag-cloud-link .tagcount {
+  display: inline-block;
+  background: #000;
+  color: #fff;
+  padding: 0 8px;
+  float: right;
+  width: 46px;
+  text-align: center;
+  line-height: 40px;
+  border: 2px solid transparent;
+  border-bottom: 0;
+}
+
+.tags_grid .tag-cloud-link:hover .tagcount {
+  background: none;
+  color: #000;
+  border: 2px solid #000;
+  border-bottom: 0;
+}
+
 /* -------------------------------------------------------------------------------- */
 /*	11.	Search
 /* -------------------------------------------------------------------------------- */
@@ -2463,6 +2509,17 @@ input.search-field::-moz-placeholder { color: #121212; }
 		margin: 80px 0 -28px -300px;
 		padding: 50px calc( 100% - 20px ) 0 0;
 	}
+      
+        .tags_grid {
+	       grid-template-columns: repeat(1, 1fr);
+	       width: 92%;
+	       margin-left: 15px;
+	}
+
+       .tags_grid .tag-cloud-link .tagcount {
+	      width: 46px;
+	      padding: 0 5px;
+        }
 
 	/* Entry Content ------------------------- */
 
