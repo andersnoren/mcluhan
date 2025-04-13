@@ -105,7 +105,7 @@ if ( have_posts() ) :
 
 			<?php endif; ?>
 
-		</div> <!-- .post -->
+		</article> <!-- .post -->
 
 		<?php
 
