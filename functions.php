@@ -625,11 +625,16 @@ endif;
 if ( ! function_exists( 'mcluhan_block_editor_styles' ) ) :
 	function mcluhan_block_editor_styles() {
 
+		// Only load in the editor. Hooked to enqueue_block_assets so the styles reach the iframed editor canvas.
+		if ( ! is_admin() ) {
+			return;
+		}
+
 		$theme_version = wp_get_theme( 'mcluhan' )->get( 'Version' );
 
 		wp_register_style( 'mcluhan-block-editor-styles-font', get_theme_file_uri( '/assets/css/fonts.css' ) );
 		wp_enqueue_style( 'mcluhan-block-editor-styles', get_theme_file_uri( '/assets/css/mcluhan-block-editor-styles.css' ), array( 'mcluhan-block-editor-styles-font' ), $theme_version, 'all' );
 
 	}
-	add_action( 'enqueue_block_editor_assets', 'mcluhan_block_editor_styles', 1 );
+	add_action( 'enqueue_block_assets', 'mcluhan_block_editor_styles', 1 );
 endif;

@@ -2,16 +2,17 @@
 
 	Theme Name: McLuhan
     Text Domain: mcluhan
-	Version: 2.1.1
-	Description: McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, Block Editor/Gutenberg support, a responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template. Demo: https://andersnoren.se/themes/mcluhan/
+	Version: 2.1.2
+	Description: McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, Block Editor/Gutenberg support, a responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template. Demo: https://mcluhan.andersnoren.se
 	Tags: two-columns, left-sidebar, custom-menu, custom-colors, editor-style, featured-images, full-width-template, sticky-post, threaded-comments, theme-options, blog, translation-ready, block-styles, wide-blocks
 	Author: Anders Norén
 	Author URI: https://andersnoren.se
 	License: GNU General Public License version 2.0
 	License URI: http://www.gnu.org/licenses/gpl-2.0.html
 	Theme URI: https://andersnoren.se/teman/mcluhan-wordpress-theme/
+	Requires at least: 4.4
 	Requires PHP: 5.4
-	Tested up to: 6.0
+	Tested up to: 7.1
 	
 	All files, unless otherwise stated, are released under the GNU General Public License
 	version 2.0 (http://www.gnu.org/licenses/gpl-2.0.html)
@@ -605,13 +606,20 @@ figure {
 }
 
 .nav-toggle {
+	background: none;
 	cursor: pointer;
 	display: none;
     height: 30px;
+	padding: 0;
     position: absolute;
 		right: 7.5%;
 		top: calc( 50% - 15px );
     width: 50px;
+}
+
+.nav-toggle:hover,
+.nav-toggle:focus {
+	background: none;
 }
 
 .nav-toggle:before {
@@ -854,7 +862,7 @@ body.hide-social .social-menu {
 .social-menu a[href*="wordpress.org"]::before,
 .social-menu a[href*="wordpress.com"]::before { content: '\f411'; font-family: 'Font Awesome 5 Brands'; }
 .social-menu a[href*="youtube.com"]::before { content: '\f167'; font-family: 'Font Awesome 5 Brands'; }
-.social-menu a[href*="unsplash.com"]::before { content: '\f030'; font-family: 'Font Awesome 5'; }
+.social-menu a[href*="unsplash."]::before { content: '\f030'; font-family: 'Font Awesome 5'; }
 
 .social-menu a[href*="?s="]::before { content: '\f002'; top: calc( 50% - 10px ); }
 
@@ -2371,9 +2379,17 @@ input.search-field::-moz-placeholder { color: #121212; }
 	}
 
 	.untoggle-mobile-search {
+		background: none;
+		display: block;
 		height: 20px;
 		margin-bottom: 10px;
+		padding: 0;
 		width: 100%;
+	}
+
+	.untoggle-mobile-search:hover,
+	.untoggle-mobile-search:focus {
+		background: none;
 	}
 
 	.untoggle-mobile-search:before,

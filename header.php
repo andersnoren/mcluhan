@@ -35,10 +35,11 @@
 
 			<?php endif; ?>
 
-			<div class="nav-toggle">
-				<div class="bar"></div>
-				<div class="bar"></div>
-			</div>
+			<button type="button" class="nav-toggle" aria-expanded="false">
+				<span class="screen-reader-text"><?php _e( 'Toggle the mobile menu', 'mcluhan' ); ?></span>
+				<span class="bar"></span>
+				<span class="bar"></span>
+			</button>
 
 			<div class="menu-wrapper">
 
@@ -139,7 +140,7 @@
 
 			<div class="mobile-search">
 
-				<div class="untoggle-mobile-search"></div>
+				<button type="button" class="untoggle-mobile-search"><span class="screen-reader-text"><?php _e( 'Close the search', 'mcluhan' ); ?></span></button>
 
 				<?php get_search_form(); ?>
 

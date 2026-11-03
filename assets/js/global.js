@@ -22,6 +22,7 @@ WP.mobileMenu = {
 		// Toggle navigation
 		$( '.nav-toggle' ).on( 'click', function(){
 			$( this ).toggleClass( 'active' );
+			$( this ).attr( 'aria-expanded', $( this ).hasClass( 'active' ) ? 'true' : 'false' );
 			$( '.mobile-menu-wrapper' ).slideToggle().toggleClass( 'visible' );
 			$( 'body' ).toggleClass( 'mobile-menu-visible lock-scroll' );
 			$( '.mobile-search, .toggle-mobile-search' ).removeClass( 'active' );
@@ -33,7 +34,7 @@ WP.mobileMenu = {
 			if ( winWidth > 1000 ) {
 				$( 'body' ).removeClass( 'mobile-menu-visible lock-scroll' );
 				$( '.mobile-menu-wrapper' ).hide().removeClass( 'visible' );
-				$( '.nav-toggle' ).removeClass( 'active' );
+				$( '.nav-toggle' ).removeClass( 'active' ).attr( 'aria-expanded', 'false' );
 				$( '.mobile-search' ).removeClass( 'active hide' );
 
 				// Empty the mobile search results
@@ -57,18 +58,17 @@ WP.searchToggle = {
 			$( this ).toggleClass( 'active' );
 			$( '.search-overlay' ).toggleClass( 'active' );
 			if ( $( this ).hasClass( 'active' ) ) {
-				$( '.search-overlay .search-field' ).focus();
+				$( '.search-overlay .search-field' ).trigger( 'focus' );
 			} else {
-				$( '.search-overlay .search-field' ).blur();
+				$( '.search-overlay .search-field' ).trigger( 'blur' );
 			}
 			return false;
 		} );
 
 		// Untoggle on click outside of form
-		$( '.search-overlay' ).click( function( e ){
-			console.log( 'log' );
+		$( '.search-overlay' ).on( 'click', function( e ){
 			if ( e.target != this ) return; // only continue if the target itself has been clicked
-			$( '.search-overlay .search-field' ).blur();
+			$( '.search-overlay .search-field' ).trigger( 'blur' );
 			$( '.search-overlay' ).removeClass( 'active' );
 			$( '.social-menu.desktop a[href$="?s="]' ).removeClass( 'active' );
 		} );
@@ -77,7 +77,7 @@ WP.searchToggle = {
 		$( '.toggle-mobile-search' ).on( 'click', function(){
 			$( '.mobile-search' ).removeClass( 'hide' );
 			$( '.toggle-mobile-search, .mobile-search' ).toggleClass( 'active' );
-			$( '.mobile-search .search-field' ).focus();
+			$( '.mobile-search .search-field' ).trigger( 'focus' );
 			return false;
 		} );
 
@@ -85,7 +85,7 @@ WP.searchToggle = {
 		$( '.untoggle-mobile-search' ).on( 'click', function(){
 			$( '.mobile-search' ).addClass( 'hide' );
 			$( '.mobile-search, .toggle-mobile-search' ).removeClass( 'active' )
-			$( '.mobile-search .search-field' ).blur();
+			$( '.mobile-search .search-field' ).trigger( 'blur' );
 
 			// Empty the results
 			WP.ajaxSearch.emptyResults();
@@ -125,7 +125,7 @@ WP.intrinsicRatioEmbeds = {
 
 		resizeVideo( vidSelector );
 
-		$( window ).resize( function() {
+		$( window ).on( 'resize', function() {
 			resizeVideo( vidSelector );
 		} );
 
@@ -147,7 +147,7 @@ WP.smoothScroll = {
 		.not( '[href="#"]' )
 		.not( '[href="#0"]' )
 		.not( '.skip-link' )
-		.click( function( event ) {
+		.on( 'click', function( event ) {
 			// On-page links
 			if ( location.pathname.replace( /^\//, '' ) == this.pathname.replace( /^\//, '' ) && location.hostname == this.hostname ) {
 				// Figure out element to scroll to
@@ -185,7 +185,7 @@ WP.ajaxSearch = {
 		} )();
 
 		// Update results on keyup, after delay
-		$( '.mobile-search .search-field' ).keyup( function() {
+		$( '.mobile-search .search-field' ).on( 'keyup', function() {
 			if ( $( this ).val().length != 0 ) {
 				delay( function(){
 					WP.ajaxSearch.loadPosts();
@@ -202,7 +202,7 @@ WP.ajaxSearch = {
 		}, 50 );
 
 		// Check for empty on blur
-		$( '.mobile-search .search-field' ).blur( function() {
+		$( '.mobile-search .search-field' ).on( 'blur', function() {
 			if ( $( this ).val().length == 0 ) {
 				WP.ajaxSearch.emptyResults();
 			}

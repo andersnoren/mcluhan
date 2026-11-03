@@ -2,14 +2,18 @@
 Contributors: Anlino
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=anders%40andersnoren%2ese&lc=US&item_name=Free%20WordPress%20Themes%20from%20Anders%20Noren&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Requires at least: 4.4
-Tested up to: 6.0
+Tested up to: 7.1
 Requires PHP: 5.4
 Stable tag: trunk
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-McLuhan WordPress Theme, Copyright 2018 Anders Norén
-McLuhan is distributed under the terms of the GNU GPL
+A clean, simple and lightweight theme with a front page archive arranged by year.
+
+
+== Description ==
+
+McLuhan is a clean, simple and lightweight WordPress theme, featuring a front page with a complete post archive arranged by year rather than a traditional blog flow. It also sports fully customizable background colors for the sidebar and content, Block Editor support, a responsive design, social network links with icons, an AJAX-powered mobile search with instant results, a resume page template and a full-width template. Demo: https://mcluhan.andersnoren.se
 
 
 == Installation ==
@@ -60,6 +64,21 @@ Here, you can choose how the post dates should be displayed in the post previews
 In the colors tab, you can set the background color of the content and of the sidebar, and select whether the sidebar should have dark text or not.
 
 
+== Frequently Asked Questions ==
+
+= Where can I get support? =
+Post your question in the McLuhan support forum on WordPress.org: https://wordpress.org/support/theme/mcluhan/
+
+= Where can I request a feature or report a bug? =
+Open an issue in the McLuhan GitHub repository: https://github.com/andersnoren/mcluhan
+
+
+== Copyright ==
+
+McLuhan WordPress Theme, Copyright 2017-2026 Anders Norén
+McLuhan is distributed under the terms of the GNU GPL.
+
+
 == Licenses ==
 
 Archivo font
@@ -72,6 +91,19 @@ Source: http://fontawesome.io/
 
 
 == Changelog ==
+
+Version 2.1.2 (2026-11-03)
+-------------------------
+- Tested with WordPress 7.1.
+- Made the mobile menu toggle and the button closing the mobile search buttons, so they can be reached and used with a keyboard.
+- Switched to the variable version of Archivo, which replaces six font files with two.
+- Replaced deprecated jQuery methods (.resize(), .click(), .keyup(), .focus() and .blur()) with .on() and .trigger().
+- Removed a leftover console.log() from the search overlay.
+- Fixed the block editor styles not loading in the iframed editor.
+- Updated the demo URL.
+- Added the Requires at least header to style.css.
+- Added Description, FAQ and Upgrade Notice sections to the readme, and moved the copyright notice to a Copyright section.
+- Removed a .DS_Store file from the theme files.
 
 Version 2.1.1 (2022-07-01)
 -------------------------
@@ -272,3 +304,9 @@ Version 1.01 (2017-10-14)
 
 Version 1.00 (2017-10-14)
 -------------------------
+
+
+== Upgrade Notice ==
+
+= 2.1.2 =
+Tested with WordPress 7.1. Makes the mobile menu toggle keyboard accessible, and fixes the block editor styles in the iframed editor.

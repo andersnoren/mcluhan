@@ -19,10 +19,10 @@ Keep in mind that I maintain my themes in my spare time. Even though I deeply ap
 Do you want to support the continued development of McLuhan? You can send me a PayPal donation [here](https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=anders%40andersnoren%2ese&lc=US&item_name=Free%20WordPress%20Themes%20from%20Anders%20Noren&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted).
 
 ## Requirements
-- WordPress 4.5+
+- WordPress 4.4+
 - PHP 5.4+
 - License: [GPLv2](https://www.gnu.org/licenses/gpl-2.0.html) or later
 
 ## Resources
 - [About McLuhan](https://andersnoren.se/teman/mcluhan-wordpress-theme/)
-- [McLuhan demo site](https://andersnoren.se/themes/mcluhan/)
+- [McLuhan demo site](https://mcluhan.andersnoren.se)
