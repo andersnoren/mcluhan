@@ -92,6 +92,11 @@ Source: http://fontawesome.io/
 
 == Changelog ==
 
+Version 2.1.3 (2026-11-08)
+-------------------------
+- Fixed the mobile menu toggle bars being misaligned since 2.1.2, both when the menu is closed and when it’s open.
+- Removed the WOFF versions of the Font Awesome icon fonts, which every supported browser loads as WOFF2 instead. This makes the theme 165 KB smaller.
+
 Version 2.1.2 (2026-11-03)
 -------------------------
 - Tested with WordPress 7.1.
@@ -307,6 +312,9 @@ Version 1.00 (2017-10-14)
 
 
 == Upgrade Notice ==
+
+= 2.1.3 =
+Fixes the mobile menu toggle bars being misaligned since 2.1.2.
 
 = 2.1.2 =
 Tested with WordPress 7.1. Makes the mobile menu toggle keyboard accessible, and fixes the block editor styles in the iframed editor.
